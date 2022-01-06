@@ -588,6 +588,12 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.btnInfo:
                     myInfoLay.setVisibility(View.VISIBLE);
                     myBuyListLay.setVisibility(View.GONE);
+
+                    edFind.setText("");//화면 재 진입시 초기화
+                    edName.setText("");
+                    edHp.setText("");
+                    tvUpName1.setText("");
+                    tvUpHp1.setText("");
                     break;
                     //개인정보 수정버튼====================================================
                 case R.id.btnFind:

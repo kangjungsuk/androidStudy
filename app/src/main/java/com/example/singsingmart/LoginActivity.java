@@ -74,7 +74,6 @@ public class LoginActivity extends AppCompatActivity {
                     {
                         lyKeyNum.setVisibility(View.VISIBLE);
                     }
-                    keyCnt=0;
 
                     break;
 

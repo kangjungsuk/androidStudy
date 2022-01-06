@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class IntroActivity extends AppCompatActivity {
-//깃에 재 업로드 확인 합니다.
+
     TextView textView;
     Animation ani1;
 
