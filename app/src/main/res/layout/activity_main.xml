@@ -108,6 +108,7 @@
 
                                         <TextView
 
+                                            android:id="@+id/tvPotatoAni"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:layout_weight="1"
@@ -224,6 +225,7 @@
 
                                         <TextView
 
+                                            android:id="@+id/tvOnionAni"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:layout_weight="1"
@@ -340,6 +342,7 @@
 
                                         <TextView
 
+                                            android:id="@+id/tvCarrotAni"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:layout_weight="1"
@@ -457,6 +460,7 @@
 
                                         <TextView
 
+                                            android:id="@+id/tvTomatoAni"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:layout_weight="1"
@@ -813,7 +817,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -849,6 +853,44 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1">
+
+                        <LinearLayout
+                            android:id="@+id/fyBotWait"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="6"
+                                android:orientation="vertical">
+
+                                <ViewFlipper
+                                    android:id="@+id/viewFlipper"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <ImageView
+                                        android:id="@+id/imageView5"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        app:srcCompat="@drawable/botwait" />
+                                </ViewFlipper>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="3"
+                                android:orientation="vertical"></LinearLayout>
+                        </LinearLayout>
 
                         <FrameLayout
                             android:layout_width="match_parent"

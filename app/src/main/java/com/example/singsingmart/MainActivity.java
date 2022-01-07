@@ -10,6 +10,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -21,10 +23,13 @@ import com.bumptech.glide.Glide;
 
 public class MainActivity extends AppCompatActivity {
 
+    Animation tvUp, tvDown;//버튼 클릭시 업다운 애니메이션 변수
+
     //SQLITE 데이타베이스 관련변수
     SQLiteDatabase db;
     MySQLiteOpenHelper helper;//클래스
     String id,pw,name,hp;
+
 
     //개인정보 수정 관련 변수
     EditText edFind,edName, edHp;
@@ -35,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
     Button btnShop,btnBuy,btnBot,btnMy,btnP1,btnP2,btnP3,btnP4,
             btnM1,btnM2,btnM3,btnM4,
             btnInten1,btnInten2,btnInten3,btnInten4;
-    TextView tvCnt1,tvCnt2,tvCnt3,tvCnt4 ;
+    TextView tvCnt1,tvCnt2,tvCnt3,tvCnt4,
+            tvOnionAni,tvCarrotAni,tvTomatoAni,tvPotatoAni;
     LinearLayout shopLayout, reviewLayout, bottleLayout, myLayout;
     ImageView imgOnion;
 
@@ -91,6 +97,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //버튼 클릭시 야채이름 움직이는 애니메이션=====================================
+        tvUp = AnimationUtils.loadAnimation(MainActivity.this, R.anim.tvup);
+        tvDown= AnimationUtils.loadAnimation(MainActivity.this, R.anim.tvdown);
 
         helper = new MySQLiteOpenHelper(
                 MainActivity.this, // 현재 화면의 context
@@ -152,6 +162,12 @@ public class MainActivity extends AppCompatActivity {
         tvCnt3 = (TextView) findViewById(R.id.tvCnt3);
         tvCnt4 = (TextView) findViewById(R.id.tvCnt4);
 
+        //shop 레이아웃의 야채 이름 텍스트뷰 상하 애니메이션 변수
+        tvOnionAni= (TextView) findViewById(R.id.tvOnionAni);
+        tvCarrotAni= (TextView) findViewById(R.id.tvCarrotAni);
+        tvTomatoAni= (TextView) findViewById(R.id.tvTomatoAni);
+        tvPotatoAni= (TextView) findViewById(R.id.tvPotatoAni);
+
 
         btnBuy.setOnClickListener(mClickListener);
         btnBot.setOnClickListener(mClickListener);
@@ -170,6 +186,8 @@ public class MainActivity extends AppCompatActivity {
         btnInten2.setOnClickListener(mClickListener);
         btnInten3.setOnClickListener(mClickListener);
         btnInten4.setOnClickListener(mClickListener);
+
+
 
         //=======장바구니 레이아웃 부분=========================================
         onionLayout=(LinearLayout) findViewById(R.id.onionLayout);
@@ -300,15 +318,18 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.btnP1://양파증감버튼
                     OnionEa++;
                     tvCnt1.setText(OnionEa+"");
+                    tvOnionAni.startAnimation(tvUp);
                     break;
                 case R.id.btnM1://양파감소버튼
                     OnionEa--;
                     if(OnionEa <= 0){
                         OnionEa = 0;
                         tvCnt1.setText(OnionEa+"");
+
                     }
                     else{
                         tvCnt1.setText(OnionEa+"");
+                        tvOnionAni.startAnimation(tvDown);
                     }break;
                 case R.id.btnInten1:
                     if(OnionEa == 0){
@@ -336,6 +357,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.btnP2://당근 증감버튼
                     CarrotEa++;
                     tvCnt2.setText(CarrotEa+"");
+                    tvCarrotAni.startAnimation(tvUp);
                     break;
                 case R.id.btnM2://당근 감소버튼
                     CarrotEa--;
@@ -345,6 +367,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else{
                         tvCnt2.setText(CarrotEa+"");
+                        tvCarrotAni.startAnimation(tvDown);
                     }break;
                 case R.id.btnInten2://
                     if(CarrotEa == 0){
@@ -368,6 +391,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.btnP3://토마토 증감버튼
                     TomatoEa++;
                     tvCnt3.setText(TomatoEa+"");
+                    tvTomatoAni.startAnimation(tvUp);
                     break;
                 case R.id.btnM3://토마토 감소버튼
                     TomatoEa--;
@@ -376,6 +400,7 @@ public class MainActivity extends AppCompatActivity {
                         tvCnt3.setText(TomatoEa+"");
                     }
                     else{
+                        tvTomatoAni.startAnimation(tvDown);
                         tvCnt3.setText(TomatoEa+"");
                     }break;
                 case R.id.btnInten3://
@@ -400,6 +425,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.btnP4://감자 증감버튼
                     potatoEa++;
                     tvCnt4.setText(potatoEa+"");
+                    tvPotatoAni.startAnimation(tvUp);
                     break;
                 case R.id.btnM4://감자 감소버튼
                     potatoEa--;
@@ -409,6 +435,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else{
                         tvCnt4.setText(potatoEa+"");
+                        tvPotatoAni.startAnimation(tvDown);
                     }break;
                 case R.id.btnInten4:
                     if(potatoEa == 0){

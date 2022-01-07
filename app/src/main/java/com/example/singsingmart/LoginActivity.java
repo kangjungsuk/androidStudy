@@ -25,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     LinearLayout lyKeyNum;
 //    Animation ani1;
 
+
     int keyCnt = 0;// 5가 차야 관리자키 화면창이 보임
 
     SQLiteDatabase db;//디비 관련 변수선언
