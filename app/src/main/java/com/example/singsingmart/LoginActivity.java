@@ -23,6 +23,8 @@ public class LoginActivity extends AppCompatActivity {
     Button btnInLogin, btnKeyView;
     EditText etPw, etid;
     LinearLayout lyKeyNum;
+//    Animation ani1;
+
     int keyCnt = 0;// 5가 차야 관리자키 화면창이 보임
 
     SQLiteDatabase db;//디비 관련 변수선언
@@ -38,6 +40,9 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+
+//        ani1 = AnimationUtils.loadAnimation(LoginActivity.this, R.anim.alpha);
+
 
         //데이베이스 생성.
         helper = new MySQLiteOpenHelper(

@@ -20,8 +20,9 @@ public class IntroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_intro);
 
         textView = (TextView) findViewById(R.id.textView);
-        ani1 = AnimationUtils.loadAnimation(IntroActivity.this, R.anim.alpha);
+        ani1 = AnimationUtils.loadAnimation(IntroActivity.this, R.anim.alpha);// 레이아웃 애니메이션
         textView.startAnimation(ani1);
+
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable(){
