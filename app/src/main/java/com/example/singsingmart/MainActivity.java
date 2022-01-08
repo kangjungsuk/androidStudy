@@ -41,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
     Button btnShop,btnBuy,btnBot,btnMy,btnP1,btnP2,btnP3,btnP4,
             btnM1,btnM2,btnM3,btnM4,
             btnInten1,btnInten2,btnInten3,btnInten4;
-    TextView tvCnt1,tvCnt2,tvCnt3,tvCnt4,
-            tvOnionAni,tvCarrotAni,tvTomatoAni,tvPotatoAni;
+    TextView tvOnionAni,tvCarrotAni,tvTomatoAni,tvPotatoAni;//야채 이름 상하 움직임tv
+    EditText edCnt4,edCnt1,edCnt2,edCnt3;//야채 갯수가 표시되는 에디트 텍스트
     LinearLayout shopLayout, reviewLayout, bottleLayout, myLayout;
     ImageView imgOnion;
 
@@ -158,11 +158,11 @@ public class MainActivity extends AppCompatActivity {
         btnInten3 = (Button) findViewById(R.id.btnInten3);
         btnInten4 = (Button) findViewById(R.id.btnInten4);
 
-        //수량 표시 텍스트필드
-        tvCnt1 = (TextView) findViewById(R.id.tvCnt1);
-        tvCnt2 = (TextView) findViewById(R.id.tvCnt2);
-        tvCnt3 = (TextView) findViewById(R.id.tvCnt3);
-        tvCnt4 = (TextView) findViewById(R.id.tvCnt4);
+        //수량 표시 에디트 텍스트
+        edCnt1= (EditText) findViewById(R.id.edCnt1);//수량표시 텍스트 tv>>ed
+        edCnt2= (EditText) findViewById(R.id.edCnt2);//수량표시 텍스트 tv>>ed
+        edCnt3= (EditText) findViewById(R.id.edCnt3);//수량표시 텍스트 tv>>ed
+        edCnt4 = (EditText) findViewById(R.id.edCnt4);//수량표시 텍스트 tv>>ed
 
         //shop 레이아웃의 야채 이름 텍스트뷰 상하 애니메이션 변수
         tvOnionAni= (TextView) findViewById(R.id.tvOnionAni);
@@ -330,148 +330,375 @@ public class MainActivity extends AppCompatActivity {
 
                     break;
 //shop 레이아웃 양파제어 버튼===========================================================================
+//shop 레이아웃 양파제어 버튼===========================================================================
+//shop 레이아웃 양파제어 버튼===========================================================================
                 case R.id.btnP1://양파증감버튼
+                    if((edCnt1.getText().toString()).equals(""))//에디트 텍스트 창에 공란 입력시 변수화 표시부분을 0으로 초기화
+                    {
+                        OnionEa=0;
+                        edCnt1.setText((OnionEa+""));
+                    }
+                    OnionEa=Integer.parseInt(edCnt1.getText().toString());
                     OnionEa++;
-                    tvCnt1.setText(OnionEa+"");
-                    tvOnionAni.startAnimation(tvUp);
+
+                    if(OnionEa >100)
+                    {
+                        Toast.makeText(getApplicationContext(), "1회 최대 100개",  Toast.LENGTH_SHORT).show();
+                        OnionEa= 100;
+                        edCnt1.setText((OnionEa+""));
+                    }
+                    else
+                    {
+                        edCnt1.setText(OnionEa+"");
+                        tvOnionAni.startAnimation(tvUp);
+                    }
                     break;
+
+//                    OnionEa++;
+//                    edCnt1.setText(OnionEa+"");
+//                    tvOnionAni.startAnimation(tvUp);
+//                    break;
+
                 case R.id.btnM1://양파감소버튼
                     OnionEa--;
                     if(OnionEa <= 0){
                         OnionEa = 0;
-                        tvCnt1.setText(OnionEa+"");
-
+                        edCnt1.setText(OnionEa+"");
                     }
                     else{
-                        tvCnt1.setText(OnionEa+"");
+                        edCnt1.setText(OnionEa+"");
                         tvOnionAni.startAnimation(tvDown);
                     }break;
-                case R.id.btnInten1:
-                    if(OnionEa == 0){
+
+                case R.id.btnInten1://양파 담기 버튼
+                    if((edCnt1.getText().toString()).equals(""))//에디트 텍스트 창에 공란 입력시 변수화 표시부분을 0으로 초기화
+                    {
+                        OnionEa=0;
+                        edCnt1.setText((OnionEa+""));
+                    }
+
+                    int su1 = Integer.parseInt(edCnt1.getText().toString());//에디트 텍스트 창의 값을 받아온다
+                    OnionEa = su1;
+
+                    if(OnionEa == 0 || su1 == 0)
+                    {
                         Toast.makeText(getApplicationContext(), "채소를 담아 주세요.",  Toast.LENGTH_SHORT).show();
                     }
-                    else{
-                        onionTotal =OnionEa*1500;
-                        onionLayout.setVisibility(View.VISIBLE);
-                        tvStore1.setText("업체: 믿음채소");
-                        tvVag1.setText("양파");
-                        tvEa1.setText(OnionEa+"");
-                        tvCoinTol1.setText((onionTotal+"")+"원");
-                        imgBot1.setImageResource(R.drawable.yangpa);
-                        tvReviewVa1.setText("양파");//장바구니에 내가 담은목록
-                        tvReviewCo1.setText(onionTotal+"");//장바구니에 내가 담은목록
-                        tvWon1.setText("원");
-                        Toast.makeText(getApplicationContext(), "양파가 장바구니에 담겼습니다.",  Toast.LENGTH_SHORT).show();
-                        fyBotWait.setVisibility(View.GONE);//장바구니 대기화면 \off
 
-
-
-
-                }
+                    else if(OnionEa > 0)
+                    {
+                        if(OnionEa>100){
+                            OnionEa=100;
+                            edCnt1.setText(OnionEa+"");
+                            Toast.makeText(getApplicationContext(), "1회 최대 100개",  Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            onionTotal =OnionEa*1500;
+                            onionLayout.setVisibility(View.VISIBLE);
+                            tvStore1.setText("업체: 믿음채소");
+                            tvVag1.setText("양파");
+                            tvEa1.setText(OnionEa+"");
+                            tvCoinTol1.setText((onionTotal+"")+"원");
+                            imgBot1.setImageResource(R.drawable.yangpa);
+                            tvReviewVa1.setText("양파");//장바구니에 내가 담은목록
+                            tvReviewCo1.setText(onionTotal+"");//장바구니에 내가 담은목록
+                            tvWon1.setText("원");
+                            Toast.makeText(getApplicationContext(), "양파가 장바구니에 담겼습니다.",  Toast.LENGTH_SHORT).show();
+                            fyBotWait.setVisibility(View.GONE);//장바구니 대기화면 \off
+                        }
+                    }
                     break;
-//shop 레이아웃 당근제어 버튼==================
+
+//                    if(OnionEa == 0){
+//                        Toast.makeText(getApplicationContext(), "채소를 담아 주세요.",  Toast.LENGTH_SHORT).show();
+//                    }
+//                    else{
+//                        onionTotal =OnionEa*1500;
+//                        onionLayout.setVisibility(View.VISIBLE);
+//                        tvStore1.setText("업체: 믿음채소");
+//                        tvVag1.setText("양파");
+//                        tvEa1.setText(OnionEa+"");
+//                        tvCoinTol1.setText((onionTotal+"")+"원");
+//                        imgBot1.setImageResource(R.drawable.yangpa);
+//                        tvReviewVa1.setText("양파");//장바구니에 내가 담은목록
+//                        tvReviewCo1.setText(onionTotal+"");//장바구니에 내가 담은목록
+//                        tvWon1.setText("원");
+//                        Toast.makeText(getApplicationContext(), "양파가 장바구니에 담겼습니다.",  Toast.LENGTH_SHORT).show();
+//                        fyBotWait.setVisibility(View.GONE);//장바구니 대기화면 \off
+//
+//                }
+//                    break;
+
+
+
+
+//shop 레이아웃 당근제어 버튼===========================================================================
+//==================================================================================================
+//==================================================================================================
                 case R.id.btnP2://당근 증감버튼
+                    if((edCnt2.getText().toString()).equals(""))//에디트 텍스트 창에 공란 입력시 변수화 표시부분을 0으로 초기화
+                    {
+                        CarrotEa=0;
+                        edCnt2.setText((CarrotEa+""));
+                    }
+                    CarrotEa=Integer.parseInt(edCnt2.getText().toString());
                     CarrotEa++;
-                    tvCnt2.setText(CarrotEa+"");
-                    tvCarrotAni.startAnimation(tvUp);
+
+                    if(CarrotEa >100)
+                    {
+                        Toast.makeText(getApplicationContext(), "1회 최대 100개",  Toast.LENGTH_SHORT).show();
+                        CarrotEa= 100;
+                        edCnt2.setText((CarrotEa+""));
+                    }
+                    else
+                    {
+                        edCnt2.setText(CarrotEa+"");
+                        tvCarrotAni.startAnimation(tvUp);
+                    }
                     break;
+//                    CarrotEa++;
+//                    edCnt2.setText(CarrotEa+"");
+//                    tvCarrotAni.startAnimation(tvUp);
+//                    break;
                 case R.id.btnM2://당근 감소버튼
                     CarrotEa--;
                     if(CarrotEa <= 0){
                         CarrotEa = 0;
-                        tvCnt2.setText(CarrotEa+"");
+                        edCnt2.setText(CarrotEa+"");
                     }
                     else{
-                        tvCnt2.setText(CarrotEa+"");
+                        edCnt2.setText(CarrotEa+"");
                         tvCarrotAni.startAnimation(tvDown);
                     }break;
-                case R.id.btnInten2://
-                    if(CarrotEa == 0){
+
+                case R.id.btnInten2://당근 담기 버튼
+                    if((edCnt2.getText().toString()).equals(""))//에디트 텍스트 창에 공란 입력시 변수화 표시부분을 0으로 초기화
+                    {
+                        CarrotEa=0;
+                        edCnt2.setText((CarrotEa+""));
+                    }
+
+                    int su2 = Integer.parseInt(edCnt2.getText().toString());//에디트 텍스트 창의 값을 받아온다
+                    CarrotEa = su2;
+
+                    if(CarrotEa == 0 || su2 == 0)
+                    {
                         Toast.makeText(getApplicationContext(), "채소를 담아 주세요.",  Toast.LENGTH_SHORT).show();
                     }
-                    else{
-                        carrotTotal =CarrotEa*900;
-                        carrotLayout.setVisibility(View.VISIBLE);
-                        tvStore2.setText("업체: 희망채소");
-                        tvVag2.setText("당근");
-                        tvEa2.setText(CarrotEa+"");
-                        tvCoinTol2.setText((carrotTotal+"")+"원");
-                        imgBot2.setImageResource(R.drawable.carrot);
-                        tvReviewVa2.setText("당근");//장바구니에 내가 담은목록
-                        tvReviewCo2.setText(carrotTotal+"");//장바구니에 내가 담은목록
-                        tvWon2.setText("원");
-                        Toast.makeText(getApplicationContext(), "당근이 장바구니에 담겼습니다.",  Toast.LENGTH_SHORT).show();
-                        fyBotWait.setVisibility(View.GONE);//장바구니 대기화면 \off
+
+                    else if(CarrotEa > 0)
+                    {
+                        if(CarrotEa>100){
+                            CarrotEa=100;
+                            edCnt2.setText(CarrotEa+"");
+                            Toast.makeText(getApplicationContext(), "1회 최대 100개",  Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            carrotTotal =CarrotEa*900;
+                            carrotLayout.setVisibility(View.VISIBLE);
+                            tvStore2.setText("업체: 희망채소");
+                            tvVag2.setText("당근");
+                            tvEa2.setText(CarrotEa+"");
+                            tvCoinTol2.setText((carrotTotal+"")+"원");
+                            imgBot2.setImageResource(R.drawable.carrot);
+                            tvReviewVa2.setText("당근");//장바구니에 내가 담은목록
+                            tvReviewCo2.setText(carrotTotal+"");//장바구니에 내가 담은목록
+                            tvWon2.setText("원");
+                            Toast.makeText(getApplicationContext(), "당근이 장바구니에 담겼습니다.",  Toast.LENGTH_SHORT).show();
+                            fyBotWait.setVisibility(View.GONE);//장바구니 대기화면 \off
+                        }
                     }
                     break;
-//shop 레이아웃 토마토 제어 버튼==================
+//                    if(CarrotEa == 0){
+//                        Toast.makeText(getApplicationContext(), "채소를 담아 주세요.",  Toast.LENGTH_SHORT).show();
+//                    }
+//                    else{
+//                        carrotTotal =CarrotEa*900;
+//                        carrotLayout.setVisibility(View.VISIBLE);
+//                        tvStore2.setText("업체: 희망채소");
+//                        tvVag2.setText("당근");
+//                        tvEa2.setText(CarrotEa+"");
+//                        tvCoinTol2.setText((carrotTotal+"")+"원");
+//                        imgBot2.setImageResource(R.drawable.carrot);
+//                        tvReviewVa2.setText("당근");//장바구니에 내가 담은목록
+//                        tvReviewCo2.setText(carrotTotal+"");//장바구니에 내가 담은목록
+//                        tvWon2.setText("원");
+//                        Toast.makeText(getApplicationContext(), "당근이 장바구니에 담겼습니다.",  Toast.LENGTH_SHORT).show();
+//                        fyBotWait.setVisibility(View.GONE);//장바구니 대기화면 \off
+//                    }
+//                    break;
+
+
+//shop 레이아웃 토마토 제어 버튼========================================================================
+//==================================================================================================
+//==================================================================================================
                 case R.id.btnP3://토마토 증감버튼
+                    if((edCnt3.getText().toString()).equals(""))//에디트 텍스트 창에 공란 입력시 변수화 표시부분을 0으로 초기화
+                    {
+                        TomatoEa=0;
+                        edCnt3.setText((TomatoEa+""));
+                    }
+                    TomatoEa=Integer.parseInt(edCnt3.getText().toString());
                     TomatoEa++;
-                    tvCnt3.setText(TomatoEa+"");
-                    tvTomatoAni.startAnimation(tvUp);
+
+                    if(TomatoEa >100)
+                    {
+                        Toast.makeText(getApplicationContext(), "1회 최대 100개",  Toast.LENGTH_SHORT).show();
+                        TomatoEa= 100;
+                        edCnt3.setText((TomatoEa+""));
+                    }
+                    else
+                    {
+                        edCnt3.setText(TomatoEa+"");
+                        tvTomatoAni.startAnimation(tvUp);
+                    }
                     break;
+//                    TomatoEa++;
+//                    edCnt3.setText(TomatoEa+"");
+//                    tvTomatoAni.startAnimation(tvUp);
+//                    break;
                 case R.id.btnM3://토마토 감소버튼
                     TomatoEa--;
                     if(TomatoEa <= 0){
                         TomatoEa = 0;
-                        tvCnt3.setText(TomatoEa+"");
+                        edCnt3.setText(TomatoEa+"");
                     }
                     else{
                         tvTomatoAni.startAnimation(tvDown);
-                        tvCnt3.setText(TomatoEa+"");
+                        edCnt3.setText(TomatoEa+"");
                     }break;
-                case R.id.btnInten3://
-                    if(TomatoEa == 0){
+                case R.id.btnInten3://토마토 담기 버튼
+
+                    if((edCnt3.getText().toString()).equals(""))//에디트 텍스트 창에 공란 입력시 변수화 표시부분을 0으로 초기화
+                    {
+                        TomatoEa=0;
+                        edCnt3.setText((TomatoEa+""));
+                    }
+
+                    int su3 = Integer.parseInt(edCnt3.getText().toString());//에디트 텍스트 창의 값을 받아온다
+                    TomatoEa = su3;
+
+                    if(TomatoEa == 0 || su3 == 0)
+                    {
                         Toast.makeText(getApplicationContext(), "채소를 담아 주세요.",  Toast.LENGTH_SHORT).show();
                     }
-                    else{
-                        tomatoTotal =TomatoEa*900;
-                        tomatoLayout.setVisibility(View.VISIBLE);
-                        tvStore3.setText("업체: 소망채소");
-                        tvVag3.setText("토마토");
-                        tvEa3.setText(TomatoEa+"");
-                        tvCoinTol3.setText((tomatoTotal+"")+"원");
-                        imgBot3.setImageResource(R.drawable.tomato);
-                        tvReviewVa3.setText("토마토");//장바구니에 내가 담은목록
-                        tvReviewCo3.setText(tomatoTotal+"");//장바구니에 내가 담은목록
-                        tvWon3.setText("원");
-                        Toast.makeText(getApplicationContext(), "토마토가 장바구니에 담겼습니다.",  Toast.LENGTH_SHORT).show();
-                        fyBotWait.setVisibility(View.GONE);//장바구니 대기화면 \off
+
+                    else if(TomatoEa > 0)
+                    {
+                        if(TomatoEa>100){
+                            TomatoEa=100;
+                            edCnt3.setText(TomatoEa+"");
+                            Toast.makeText(getApplicationContext(), "1회 최대 100개",  Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            tomatoTotal =TomatoEa*900;
+                            tomatoLayout.setVisibility(View.VISIBLE);
+                            tvStore3.setText("업체: 소망채소");
+                            tvVag3.setText("토마토");
+                            tvEa3.setText(TomatoEa+"");
+                            tvCoinTol3.setText((tomatoTotal+"")+"원");
+                            imgBot3.setImageResource(R.drawable.tomato);
+                            tvReviewVa3.setText("토마토");//장바구니에 내가 담은목록
+                            tvReviewCo3.setText(tomatoTotal+"");//장바구니에 내가 담은목록
+                            tvWon3.setText("원");
+                            Toast.makeText(getApplicationContext(), "토마토가 장바구니에 담겼습니다.",  Toast.LENGTH_SHORT).show();
+                            fyBotWait.setVisibility(View.GONE);//장바구니 대기화면 \off
+                        }
                     }
                     break;
-//shop 레이아웃 감자 제어 버튼==================
+//                    if(TomatoEa == 0){
+//                        Toast.makeText(getApplicationContext(), "채소를 담아 주세요.",  Toast.LENGTH_SHORT).show();
+//                    }
+//                    else{
+//                        tomatoTotal =TomatoEa*900;
+//                        tomatoLayout.setVisibility(View.VISIBLE);
+//                        tvStore3.setText("업체: 소망채소");
+//                        tvVag3.setText("토마토");
+//                        tvEa3.setText(TomatoEa+"");
+//                        tvCoinTol3.setText((tomatoTotal+"")+"원");
+//                        imgBot3.setImageResource(R.drawable.tomato);
+//                        tvReviewVa3.setText("토마토");//장바구니에 내가 담은목록
+//                        tvReviewCo3.setText(tomatoTotal+"");//장바구니에 내가 담은목록
+//                        tvWon3.setText("원");
+//                        Toast.makeText(getApplicationContext(), "토마토가 장바구니에 담겼습니다.",  Toast.LENGTH_SHORT).show();
+//                        fyBotWait.setVisibility(View.GONE);//장바구니 대기화면 \off
+//                    }
+//                    break;
+//shop 레이아웃 감자 제어 버튼==================================================================
+//==========================================================================================
+//==========================================================================================
+
                 case R.id.btnP4://감자 증감버튼
+                    if((edCnt4.getText().toString()).equals(""))//에디트 텍스트 창에 공란 입력시 변수화 표시부분을 0으로 초기화
+                    {
+                        potatoEa=0;
+                        edCnt4.setText((potatoEa+""));
+                    }
+                    potatoEa=Integer.parseInt(edCnt4.getText().toString());
                     potatoEa++;
-                    tvCnt4.setText(potatoEa+"");
-                    tvPotatoAni.startAnimation(tvUp);
+
+                    if(potatoEa >100)
+                    {
+                        Toast.makeText(getApplicationContext(), "1회 최대 100개",  Toast.LENGTH_SHORT).show();
+                        potatoEa= 100;
+                        edCnt4.setText((potatoEa+""));
+                    }
+                    else
+                    {
+                        edCnt4.setText(potatoEa+"");
+                        tvPotatoAni.startAnimation(tvUp);
+                    }
                     break;
                 case R.id.btnM4://감자 감소버튼
                     potatoEa--;
                     if(potatoEa <= 0){
                         potatoEa = 0;
-                        tvCnt4.setText(potatoEa+"");
+                        edCnt4.setText(potatoEa+"");
                     }
                     else{
-                        tvCnt4.setText(potatoEa+"");
+                        edCnt4.setText(potatoEa+"");
                         tvPotatoAni.startAnimation(tvDown);
                     }break;
-                case R.id.btnInten4:
-                    if(potatoEa == 0){
+                case R.id.btnInten4://감자 담기 부분
+                    if((edCnt4.getText().toString()).equals(""))//에디트 텍스트 창에 공란 입력시 변수화 표시부분을 0으로 초기화
+                    {
+                        potatoEa=0;
+                        edCnt4.setText((potatoEa+""));
+                    }
+
+                    int su4 = Integer.parseInt(edCnt4.getText().toString());//에디트 텍스트 창의 값을 받아온다
+                    potatoEa = su4;
+
+                    if(potatoEa == 0 || su4 == 0)
+                    {
                         Toast.makeText(getApplicationContext(), "채소를 담아 주세요.",  Toast.LENGTH_SHORT).show();
                     }
-                    else{
-                        potatoTotal =potatoEa*500;
-                        potatoLayout.setVisibility(View.VISIBLE);
-                        tvStore4.setText("업체: 사랑채소");
-                        tvVag4.setText("감자");
-                        tvEa4.setText(potatoEa+"");
-                        tvCoinTol4.setText((potatoTotal+"")+"원");
-                        imgBot4.setImageResource(R.drawable.potato);
-                        tvReviewVa4.setText("감자");//장바구니에 내가 담은목록
-                        tvReviewCo4.setText(potatoTotal+"");//장바구니에 내가 담은목록
-                        tvWon4.setText("원");
-                        Toast.makeText(getApplicationContext(), "감자가 장바구니에 담겼습니다.",  Toast.LENGTH_SHORT).show();
-                        fyBotWait.setVisibility(View.GONE);//장바구니 대기화면 \off
+
+                    else if(potatoEa > 0)
+                    {
+                        if(potatoEa>100){
+                            potatoEa=100;
+                            edCnt4.setText(potatoEa+"");
+                            Toast.makeText(getApplicationContext(), "1회 최대 100개",  Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            potatoTotal = potatoEa * 500;
+                            potatoLayout.setVisibility(View.VISIBLE);
+                            tvStore4.setText("업체: 사랑채소");
+                            tvVag4.setText("감자");
+                            tvEa4.setText(potatoEa + "");
+                            tvCoinTol4.setText((potatoTotal + "") + "원");
+                            imgBot4.setImageResource(R.drawable.potato);
+                            tvReviewVa4.setText("감자");//장바구니에 내가 담은목록
+                            tvReviewCo4.setText(potatoTotal + "");//장바구니에 내가 담은목록
+                            tvWon4.setText("원");
+                            Toast.makeText(getApplicationContext(), "감자가 장바구니에 담겼습니다.", Toast.LENGTH_SHORT).show();
+                            fyBotWait.setVisibility(View.GONE);//장바구니 대기화면 \off
+                       }
                     }
                     break;
                     //장바구니 결제 화면 제어 부분.
@@ -612,10 +839,10 @@ public class MainActivity extends AppCompatActivity {
                         TomatoEa = 0;
                         potatoEa = 0;
 
-                        tvCnt1.setText("0");//구매완료 후 shop 레이아웃 부분의 갯수표시 초기화
-                        tvCnt2.setText("0");
-                        tvCnt3.setText("0");
-                        tvCnt4.setText("0");
+                        edCnt1.setText("0");//구매완료 후 shop 레이아웃 부분의 갯수표시 초기화
+                        edCnt2.setText("0");
+                        edCnt3.setText("0");
+                        edCnt4.setText("0");
                     }
                     else if (vageTotalMoney > fillMoeny && vageTotalMoney!=0)
                     {
