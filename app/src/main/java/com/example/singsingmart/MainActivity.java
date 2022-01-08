@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnFind, btnUpdate;
     TextView tvUpName1, tvUpHp1;
 
+
    //=======shop 레이아웃 관련 변수 선언==============================================
     Button btnShop,btnBuy,btnBot,btnMy,btnP1,btnP2,btnP3,btnP4,
             btnM1,btnM2,btnM3,btnM4,
@@ -58,7 +59,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     //=======장바구니 레이아웃 관련 변수선언===============================================
-    LinearLayout onionLayout,carrotLayout,tomatoLayout,potatoLayout,fyBot1,fyBot2;
+    LinearLayout onionLayout,carrotLayout,tomatoLayout,potatoLayout,fyBot1,fyBot2,
+            fyBotWait,fyInfoWait;
     TextView tvStore1,tvStore2,tvStore3,tvStore4,
             tvVag1,tvVag2,tvVag3,tvVag4,
             tvEa1,tvEa2,tvEa3,tvEa4,
@@ -196,6 +198,8 @@ public class MainActivity extends AppCompatActivity {
         potatoLayout=(LinearLayout) findViewById(R.id.potatoLayout);
         fyBot1=(LinearLayout) findViewById(R.id.fyBot1);
         fyBot2=(LinearLayout) findViewById(R.id.fyBot2);
+        fyBotWait=(LinearLayout) findViewById(R.id.fyBotWait);
+        fyInfoWait=(LinearLayout) findViewById(R.id.fyInfoWait);
 
         tvStore1= (TextView) findViewById(R.id.tvStore1);
         tvStore2= (TextView) findViewById(R.id.tvStore2);
@@ -213,6 +217,8 @@ public class MainActivity extends AppCompatActivity {
         tvCoinTol2= (TextView) findViewById(R.id.tvCoinTol2);
         tvCoinTol3= (TextView) findViewById(R.id.tvCoinTol3);
         tvCoinTol4= (TextView) findViewById(R.id.tvCoinTol4);
+
+
 
 
         //장바구니 안 결제관련 부분.
@@ -293,28 +299,37 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
 
             switch (v.getId()) {
-                case R.id.btnBuy:
+                case R.id.btnBuy://최 하단 채소정보 버튼
                     layoutView();
                     reviewLayout.setVisibility(View.VISIBLE);
                     break;
-                case R.id.btnBot:
+                case R.id.btnBot://최 하단 장바구니 버튼
                     layoutView();
                     bottleLayout.setVisibility(View.VISIBLE);
-                    fyBot1.setVisibility(View.VISIBLE);
                     fyBot2.setVisibility(View.INVISIBLE);
+                    if(onionTotal>0 ||carrotTotal >0||tomatoTotal >0||potatoTotal >0)
+                    {
+                        fyBotWait.setVisibility(View.GONE);//장바구니 대기화면 \off
+                        fyBot1.setVisibility(View.VISIBLE);
+                    }else{fyBotWait.setVisibility(View.VISIBLE);}
                     break;
                 case R.id.btnMy:
                     layoutView();
-                    myBuyListLay.setVisibility(View.VISIBLE);
                     myLayout.setVisibility(View.VISIBLE);
                     myInfoLay.setVisibility(View.GONE);
+                    if(onionTotalEa>0||carrotTotalEa>0||tomatoTotalEa>0||potatoTotalEa>0)
+                    {
+                        fyInfoWait.setVisibility(View.GONE);
+                        myBuyListLay.setVisibility(View.VISIBLE);
+                    }
+                    else{ fyInfoWait.setVisibility(View.VISIBLE); }
                     break;
                 case R.id.btnShop:
                     layoutView();
                     shopLayout.setVisibility(View.VISIBLE);
 
                     break;
-//shop 레이아웃 양파제어 버튼==================
+//shop 레이아웃 양파제어 버튼===========================================================================
                 case R.id.btnP1://양파증감버튼
                     OnionEa++;
                     tvCnt1.setText(OnionEa+"");
@@ -347,6 +362,7 @@ public class MainActivity extends AppCompatActivity {
                         tvReviewCo1.setText(onionTotal+"");//장바구니에 내가 담은목록
                         tvWon1.setText("원");
                         Toast.makeText(getApplicationContext(), "양파가 장바구니에 담겼습니다.",  Toast.LENGTH_SHORT).show();
+                        fyBotWait.setVisibility(View.GONE);//장바구니 대기화면 \off
 
 
 
@@ -385,6 +401,7 @@ public class MainActivity extends AppCompatActivity {
                         tvReviewCo2.setText(carrotTotal+"");//장바구니에 내가 담은목록
                         tvWon2.setText("원");
                         Toast.makeText(getApplicationContext(), "당근이 장바구니에 담겼습니다.",  Toast.LENGTH_SHORT).show();
+                        fyBotWait.setVisibility(View.GONE);//장바구니 대기화면 \off
                     }
                     break;
 //shop 레이아웃 토마토 제어 버튼==================
@@ -419,6 +436,7 @@ public class MainActivity extends AppCompatActivity {
                         tvReviewCo3.setText(tomatoTotal+"");//장바구니에 내가 담은목록
                         tvWon3.setText("원");
                         Toast.makeText(getApplicationContext(), "토마토가 장바구니에 담겼습니다.",  Toast.LENGTH_SHORT).show();
+                        fyBotWait.setVisibility(View.GONE);//장바구니 대기화면 \off
                     }
                     break;
 //shop 레이아웃 감자 제어 버튼==================
@@ -453,6 +471,7 @@ public class MainActivity extends AppCompatActivity {
                         tvReviewCo4.setText(potatoTotal+"");//장바구니에 내가 담은목록
                         tvWon4.setText("원");
                         Toast.makeText(getApplicationContext(), "감자가 장바구니에 담겼습니다.",  Toast.LENGTH_SHORT).show();
+                        fyBotWait.setVisibility(View.GONE);//장바구니 대기화면 \off
                     }
                     break;
                     //장바구니 결제 화면 제어 부분.
@@ -467,7 +486,7 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                     tvTolMoney.setText((vageTotalMoney+"")+"원");//결제 화면창으로 이동 할때 채소값들이 합산되어 보여짐.
-
+                    fyBotWait.setVisibility(View.GONE);//장바구니 안내 화면
                     fyBot1.setVisibility(View.INVISIBLE);
                     fyBot2.setVisibility(View.VISIBLE);
                 break;
@@ -615,6 +634,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.btnInfo:
                     myInfoLay.setVisibility(View.VISIBLE);
                     myBuyListLay.setVisibility(View.GONE);
+                    fyInfoWait.setVisibility(View.GONE);
 
                     edFind.setText("");//화면 재 진입시 초기화
                     edName.setText("");

@@ -817,7 +817,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -846,7 +846,8 @@
                             android:text="결제하기이동"
                             android:textColor="#FF7012"
                             android:textSize="15dp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:visibility="visible" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -854,47 +855,54 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1">
 
-                        <LinearLayout
-                            android:id="@+id/fyBotWait"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="1"
-                                android:orientation="vertical"></LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="6"
-                                android:orientation="vertical">
-
-                                <ViewFlipper
-                                    android:id="@+id/viewFlipper"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-
-                                    <ImageView
-                                        android:id="@+id/imageView5"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        app:srcCompat="@drawable/botwait" />
-                                </ViewFlipper>
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="3"
-                                android:orientation="vertical"></LinearLayout>
-                        </LinearLayout>
-
                         <FrameLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
+
+                            <LinearLayout
+                                android:id="@+id/fyBotWait"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:visibility="visible">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"></LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="6"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:id="@+id/imageView3"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:alpha="0.7"
+                                        app:srcCompat="@drawable/original1" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="3"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/textView20"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="20dp"
+                                        android:text="상품을 장바구니에 담아 주세요."
+                                        android:textAlignment="center"
+                                        android:textColor="#BDBDBD"
+                                        android:textSize="20dp" />
+                                </LinearLayout>
+                            </LinearLayout>
 
                             <LinearLayout
                                 android:id="@+id/fyBot1"
@@ -1822,141 +1830,86 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:orientation="vertical"
                         android:visibility="visible">
 
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="9"
-                            android:orientation="horizontal">
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
 
-                            <FrameLayout
+                            <LinearLayout
+                                android:id="@+id/fyInfoWait"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
 
                                 <LinearLayout
-
-                                    android:id="@+id/myBuyListLay"
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:orientation="vertical"
-                                    android:visibility="gone">
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"></LinearLayout>
 
-                                    <ScrollView
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="6"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:id="@+id/imageView5"
                                         android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
+                                        android:layout_height="match_parent"
+                                        android:alpha="0.7"
+                                        app:srcCompat="@drawable/original2" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="3"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/textView23"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="20dp"
+                                        android:text="물품구매 후 내역이 표시됩니다."
+                                        android:textAlignment="center"
+                                        android:textColor="#BDBDBD"
+                                        android:textSize="20dp" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+
+                                android:id="@+id/myBuyListLay"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:visibility="gone">
+
+                                <ScrollView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
 
                                         <LinearLayout
+                                            android:id="@+id/myInfoVa1"
                                             android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:orientation="vertical">
+                                            android:layout_height="match_parent"
+                                            android:orientation="vertical"
+                                            android:visibility="gone">
 
                                             <LinearLayout
-                                                android:id="@+id/myInfoVa1"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="match_parent"
-                                                android:orientation="vertical"
-                                                android:visibility="gone">
-
-                                                <LinearLayout
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="match_parent"
-                                                    android:orientation="vertical">
-
-                                                    <LinearLayout
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="match_parent"
-                                                        android:orientation="horizontal">
-
-                                                        <LinearLayout
-                                                            android:layout_width="185dp"
-                                                            android:layout_height="match_parent"
-                                                            android:orientation="vertical">
-
-                                                            <ImageView
-                                                                android:id="@+id/myInfoImg1"
-                                                                android:layout_width="match_parent"
-                                                                android:layout_height="wrap_content"
-                                                                app:srcCompat="@drawable/introva" />
-                                                        </LinearLayout>
-
-                                                        <LinearLayout
-                                                            android:layout_width="match_parent"
-                                                            android:layout_height="match_parent"
-                                                            android:orientation="vertical">
-
-                                                            <TextView
-
-                                                                android:id="@+id/tvMyinfoStore1"
-                                                                android:layout_width="match_parent"
-                                                                android:layout_height="match_parent"
-                                                                android:layout_margin="30px"
-                                                                android:layout_weight="1"
-                                                                android:paddingTop="30dp"
-                                                                android:text="업체: 희망채소"
-                                                                android:textAlignment="center"
-                                                                android:textColor="#FF7012"
-                                                                android:textSize="20dp"
-                                                                android:textStyle="bold" />
-
-                                                            <TextView
-                                                                android:id="@+id/tvMyInfoVa1"
-                                                                android:layout_width="match_parent"
-                                                                android:layout_height="match_parent"
-                                                                android:layout_weight="1"
-                                                                android:paddingTop="20dp"
-                                                                android:text="양파"
-                                                                android:textAlignment="center"
-                                                                android:textColor="#FF7012"
-                                                                android:textSize="30dp"
-                                                                android:textStyle="bold" />
-                                                        </LinearLayout>
-                                                    </LinearLayout>
-
-                                                    <LinearLayout
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="match_parent"
-                                                        android:orientation="horizontal">
-
-
-                                                        <TextView
-
-                                                            android:layout_width="match_parent"
-                                                            android:layout_height="match_parent"
-                                                            android:layout_marginTop="12dp"
-                                                            android:layout_weight="1"
-                                                            android:background="@drawable/button_background"
-                                                            android:text="구매수량:"
-                                                            android:textAlignment="center"
-                                                            android:textColor="#FF7012"
-                                                            android:textSize="20dp"
-                                                            android:textStyle="bold" />
-
-                                                        <TextView
-
-                                                            android:id="@+id/tvMyInfoEa1"
-                                                            android:layout_width="match_parent"
-                                                            android:layout_height="match_parent"
-                                                            android:layout_marginTop="12dp"
-                                                            android:layout_weight="1"
-                                                            android:background="@drawable/button_background"
-                                                            android:text="999"
-                                                            android:textAlignment="center"
-                                                            android:textColor="#FF7012"
-                                                            android:textSize="20dp"
-                                                            android:textStyle="bold" />
-
-                                                    </LinearLayout>
-                                                </LinearLayout>
-
-                                            </LinearLayout>
-
-                                            <LinearLayout
-                                                android:id="@+id/myInfoVa2"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:orientation="vertical"
-                                                android:visibility="gone">
+                                                android:orientation="vertical">
 
                                                 <LinearLayout
                                                     android:layout_width="match_parent"
@@ -1969,7 +1922,7 @@
                                                         android:orientation="vertical">
 
                                                         <ImageView
-                                                            android:id="@+id/myInfoImg2"
+                                                            android:id="@+id/myInfoImg1"
                                                             android:layout_width="match_parent"
                                                             android:layout_height="wrap_content"
                                                             app:srcCompat="@drawable/introva" />
@@ -1982,7 +1935,7 @@
 
                                                         <TextView
 
-                                                            android:id="@+id/tvMyinfoStore2"
+                                                            android:id="@+id/tvMyinfoStore1"
                                                             android:layout_width="match_parent"
                                                             android:layout_height="match_parent"
                                                             android:layout_margin="30px"
@@ -1995,7 +1948,7 @@
                                                             android:textStyle="bold" />
 
                                                         <TextView
-                                                            android:id="@+id/tvMyInfoVa2"
+                                                            android:id="@+id/tvMyInfoVa1"
                                                             android:layout_width="match_parent"
                                                             android:layout_height="match_parent"
                                                             android:layout_weight="1"
@@ -2029,7 +1982,7 @@
 
                                                     <TextView
 
-                                                        android:id="@+id/tvMyInfoEa2"
+                                                        android:id="@+id/tvMyInfoEa1"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="match_parent"
                                                         android:layout_marginTop="12dp"
@@ -2044,305 +1997,444 @@
                                                 </LinearLayout>
                                             </LinearLayout>
 
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/myInfoVa2"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:orientation="vertical"
+                                            android:visibility="gone">
+
                                             <LinearLayout
-                                                android:id="@+id/myInfoVa3"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="match_parent"
-                                                android:orientation="vertical"
-                                                android:visibility="gone">
+                                                android:orientation="horizontal">
+
+                                                <LinearLayout
+                                                    android:layout_width="185dp"
+                                                    android:layout_height="match_parent"
+                                                    android:orientation="vertical">
+
+                                                    <ImageView
+                                                        android:id="@+id/myInfoImg2"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        app:srcCompat="@drawable/introva" />
+                                                </LinearLayout>
 
                                                 <LinearLayout
                                                     android:layout_width="match_parent"
                                                     android:layout_height="match_parent"
                                                     android:orientation="vertical">
 
-                                                    <LinearLayout
+                                                    <TextView
+
+                                                        android:id="@+id/tvMyinfoStore2"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="match_parent"
-                                                        android:orientation="horizontal">
+                                                        android:layout_margin="30px"
+                                                        android:layout_weight="1"
+                                                        android:paddingTop="30dp"
+                                                        android:text="업체: 희망채소"
+                                                        android:textAlignment="center"
+                                                        android:textColor="#FF7012"
+                                                        android:textSize="20dp"
+                                                        android:textStyle="bold" />
 
-                                                        <LinearLayout
-                                                            android:layout_width="185dp"
-                                                            android:layout_height="match_parent"
-                                                            android:orientation="vertical">
-
-                                                            <ImageView
-                                                                android:id="@+id/myInfoImg3"
-                                                                android:layout_width="match_parent"
-                                                                android:layout_height="wrap_content"
-                                                                app:srcCompat="@drawable/introva" />
-                                                        </LinearLayout>
-
-                                                        <LinearLayout
-                                                            android:layout_width="match_parent"
-                                                            android:layout_height="match_parent"
-                                                            android:orientation="vertical">
-
-                                                            <TextView
-
-                                                                android:id="@+id/tvMyinfoStore3"
-                                                                android:layout_width="match_parent"
-                                                                android:layout_height="match_parent"
-                                                                android:layout_margin="30px"
-                                                                android:layout_weight="1"
-                                                                android:paddingTop="30dp"
-                                                                android:text="업체: 희망채소"
-                                                                android:textAlignment="center"
-                                                                android:textColor="#FF7012"
-                                                                android:textSize="20dp"
-                                                                android:textStyle="bold" />
-
-                                                            <TextView
-                                                                android:id="@+id/tvMyInfoVa3"
-                                                                android:layout_width="match_parent"
-                                                                android:layout_height="match_parent"
-                                                                android:layout_weight="1"
-                                                                android:paddingTop="20dp"
-                                                                android:text="양파"
-                                                                android:textAlignment="center"
-                                                                android:textColor="#FF7012"
-                                                                android:textSize="30dp"
-                                                                android:textStyle="bold" />
-                                                        </LinearLayout>
-                                                    </LinearLayout>
-
-                                                    <LinearLayout
+                                                    <TextView
+                                                        android:id="@+id/tvMyInfoVa2"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="match_parent"
-                                                        android:orientation="horizontal">
-
-
-                                                        <TextView
-
-                                                            android:layout_width="match_parent"
-                                                            android:layout_height="match_parent"
-                                                            android:layout_marginTop="12dp"
-                                                            android:layout_weight="1"
-                                                            android:background="@drawable/button_background"
-                                                            android:text="구매수량:"
-                                                            android:textAlignment="center"
-                                                            android:textColor="#FF7012"
-                                                            android:textSize="20dp"
-                                                            android:textStyle="bold" />
-
-                                                        <TextView
-
-                                                            android:id="@+id/tvMyInfoEa3"
-                                                            android:layout_width="match_parent"
-                                                            android:layout_height="match_parent"
-                                                            android:layout_marginTop="12dp"
-                                                            android:layout_weight="1"
-                                                            android:background="@drawable/button_background"
-                                                            android:text="999"
-                                                            android:textAlignment="center"
-                                                            android:textColor="#FF7012"
-                                                            android:textSize="20dp"
-                                                            android:textStyle="bold" />
-
-                                                    </LinearLayout>
+                                                        android:layout_weight="1"
+                                                        android:paddingTop="20dp"
+                                                        android:text="양파"
+                                                        android:textAlignment="center"
+                                                        android:textColor="#FF7012"
+                                                        android:textSize="30dp"
+                                                        android:textStyle="bold" />
                                                 </LinearLayout>
-
                                             </LinearLayout>
 
                                             <LinearLayout
-                                                android:id="@+id/myInfoVa4"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="match_parent"
-                                                android:orientation="vertical"
-                                                android:visibility="gone">
+                                                android:orientation="horizontal">
+
+
+                                                <TextView
+
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_marginTop="12dp"
+                                                    android:layout_weight="1"
+                                                    android:background="@drawable/button_background"
+                                                    android:text="구매수량:"
+                                                    android:textAlignment="center"
+                                                    android:textColor="#FF7012"
+                                                    android:textSize="20dp"
+                                                    android:textStyle="bold" />
+
+                                                <TextView
+
+                                                    android:id="@+id/tvMyInfoEa2"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_marginTop="12dp"
+                                                    android:layout_weight="1"
+                                                    android:background="@drawable/button_background"
+                                                    android:text="999"
+                                                    android:textAlignment="center"
+                                                    android:textColor="#FF7012"
+                                                    android:textSize="20dp"
+                                                    android:textStyle="bold" />
+
+                                            </LinearLayout>
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/myInfoVa3"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:orientation="vertical"
+                                            android:visibility="gone">
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:orientation="vertical">
 
                                                 <LinearLayout
                                                     android:layout_width="match_parent"
                                                     android:layout_height="match_parent"
-                                                    android:orientation="vertical">
+                                                    android:orientation="horizontal">
 
                                                     <LinearLayout
-                                                        android:layout_width="match_parent"
+                                                        android:layout_width="185dp"
                                                         android:layout_height="match_parent"
-                                                        android:orientation="horizontal">
+                                                        android:orientation="vertical">
 
-                                                        <LinearLayout
-                                                            android:layout_width="185dp"
-                                                            android:layout_height="match_parent"
-                                                            android:orientation="vertical">
-
-                                                            <ImageView
-                                                                android:id="@+id/myInfoImg4"
-                                                                android:layout_width="match_parent"
-                                                                android:layout_height="wrap_content"
-                                                                app:srcCompat="@drawable/introva" />
-                                                        </LinearLayout>
-
-                                                        <LinearLayout
+                                                        <ImageView
+                                                            android:id="@+id/myInfoImg3"
                                                             android:layout_width="match_parent"
-                                                            android:layout_height="match_parent"
-                                                            android:orientation="vertical">
-
-                                                            <TextView
-
-                                                                android:id="@+id/tvMyinfoStore4"
-                                                                android:layout_width="match_parent"
-                                                                android:layout_height="match_parent"
-                                                                android:layout_margin="30px"
-                                                                android:layout_weight="1"
-                                                                android:paddingTop="30dp"
-                                                                android:text="업체: 희망채소444"
-                                                                android:textAlignment="center"
-                                                                android:textColor="#FF7012"
-                                                                android:textSize="20dp"
-                                                                android:textStyle="bold" />
-
-                                                            <TextView
-                                                                android:id="@+id/tvMyInfoVa4"
-                                                                android:layout_width="match_parent"
-                                                                android:layout_height="match_parent"
-                                                                android:layout_weight="1"
-                                                                android:paddingTop="20dp"
-                                                                android:text="양파"
-                                                                android:textAlignment="center"
-                                                                android:textColor="#FF7012"
-                                                                android:textSize="30dp"
-                                                                android:textStyle="bold" />
-                                                        </LinearLayout>
+                                                            android:layout_height="wrap_content"
+                                                            app:srcCompat="@drawable/introva" />
                                                     </LinearLayout>
 
                                                     <LinearLayout
                                                         android:layout_width="match_parent"
                                                         android:layout_height="match_parent"
-                                                        android:orientation="horizontal">
-
+                                                        android:orientation="vertical">
 
                                                         <TextView
 
+                                                            android:id="@+id/tvMyinfoStore3"
                                                             android:layout_width="match_parent"
                                                             android:layout_height="match_parent"
-                                                            android:layout_marginTop="12dp"
+                                                            android:layout_margin="30px"
                                                             android:layout_weight="1"
-                                                            android:background="@drawable/button_background"
-                                                            android:text="구매수량:"
+                                                            android:paddingTop="30dp"
+                                                            android:text="업체: 희망채소"
                                                             android:textAlignment="center"
                                                             android:textColor="#FF7012"
                                                             android:textSize="20dp"
                                                             android:textStyle="bold" />
 
                                                         <TextView
-
-                                                            android:id="@+id/tvMyInfoEa4"
+                                                            android:id="@+id/tvMyInfoVa3"
                                                             android:layout_width="match_parent"
                                                             android:layout_height="match_parent"
-                                                            android:layout_marginTop="12dp"
                                                             android:layout_weight="1"
-                                                            android:background="@drawable/button_background"
-                                                            android:text="999"
+                                                            android:paddingTop="20dp"
+                                                            android:text="양파"
                                                             android:textAlignment="center"
                                                             android:textColor="#FF7012"
-                                                            android:textSize="20dp"
+                                                            android:textSize="30dp"
                                                             android:textStyle="bold" />
-
                                                     </LinearLayout>
                                                 </LinearLayout>
 
-                                            </LinearLayout>
-
-                                            <LinearLayout
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:orientation="horizontal"
-                                                android:visibility="gone">
-
-                                                <TextView
-                                                    android:id="@+id/textView8"
+                                                <LinearLayout
                                                     android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_weight="1"
-                                                    android:padding="10dp"
-                                                    android:text="남은금액:"
-                                                    android:textAlignment="center"
-                                                    android:textColor="@color/black"
-                                                    android:textSize="20dp"
-                                                    android:textStyle="bold" />
+                                                    android:layout_height="match_parent"
+                                                    android:orientation="horizontal">
 
-                                                <TextView
-                                                    android:id="@+id/myInfoMoney1"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_weight="1"
-                                                    android:padding="10dp"
-                                                    android:text="남은금액대기중.."
-                                                    android:textAlignment="center"
-                                                    android:textColor="@color/black"
-                                                    android:textSize="20dp"
-                                                    android:textStyle="bold" />
 
-                                                <TextView
-                                                    android:id="@+id/textView9"
-                                                    android:layout_width="255dp"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_weight="1"
-                                                    android:padding="10dp"
-                                                    android:text="원"
-                                                    android:textAlignment="center"
-                                                    android:textColor="@color/black"
-                                                    android:textSize="20dp"
-                                                    android:textStyle="bold" />
+                                                    <TextView
+
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="match_parent"
+                                                        android:layout_marginTop="12dp"
+                                                        android:layout_weight="1"
+                                                        android:background="@drawable/button_background"
+                                                        android:text="구매수량:"
+                                                        android:textAlignment="center"
+                                                        android:textColor="#FF7012"
+                                                        android:textSize="20dp"
+                                                        android:textStyle="bold" />
+
+                                                    <TextView
+
+                                                        android:id="@+id/tvMyInfoEa3"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="match_parent"
+                                                        android:layout_marginTop="12dp"
+                                                        android:layout_weight="1"
+                                                        android:background="@drawable/button_background"
+                                                        android:text="999"
+                                                        android:textAlignment="center"
+                                                        android:textColor="#FF7012"
+                                                        android:textSize="20dp"
+                                                        android:textStyle="bold" />
+
+                                                </LinearLayout>
                                             </LinearLayout>
 
                                         </LinearLayout>
-                                    </ScrollView>
-                                </LinearLayout>
 
-                                <LinearLayout
+                                        <LinearLayout
+                                            android:id="@+id/myInfoVa4"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:orientation="vertical"
+                                            android:visibility="gone">
 
-                                    android:id="@+id/myInfoLay"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:orientation="vertical"
-                                    android:visibility="gone">
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:orientation="vertical">
 
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:orientation="vertical">
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:orientation="horizontal">
 
+                                                    <LinearLayout
+                                                        android:layout_width="185dp"
+                                                        android:layout_height="match_parent"
+                                                        android:orientation="vertical">
+
+                                                        <ImageView
+                                                            android:id="@+id/myInfoImg4"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            app:srcCompat="@drawable/introva" />
+                                                    </LinearLayout>
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="match_parent"
+                                                        android:orientation="vertical">
+
+                                                        <TextView
+
+                                                            android:id="@+id/tvMyinfoStore4"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="match_parent"
+                                                            android:layout_margin="30px"
+                                                            android:layout_weight="1"
+                                                            android:paddingTop="30dp"
+                                                            android:text="업체: 희망채소444"
+                                                            android:textAlignment="center"
+                                                            android:textColor="#FF7012"
+                                                            android:textSize="20dp"
+                                                            android:textStyle="bold" />
+
+                                                        <TextView
+                                                            android:id="@+id/tvMyInfoVa4"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="match_parent"
+                                                            android:layout_weight="1"
+                                                            android:paddingTop="20dp"
+                                                            android:text="양파"
+                                                            android:textAlignment="center"
+                                                            android:textColor="#FF7012"
+                                                            android:textSize="30dp"
+                                                            android:textStyle="bold" />
+                                                    </LinearLayout>
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:orientation="horizontal">
+
+
+                                                    <TextView
+
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="match_parent"
+                                                        android:layout_marginTop="12dp"
+                                                        android:layout_weight="1"
+                                                        android:background="@drawable/button_background"
+                                                        android:text="구매수량:"
+                                                        android:textAlignment="center"
+                                                        android:textColor="#FF7012"
+                                                        android:textSize="20dp"
+                                                        android:textStyle="bold" />
+
+                                                    <TextView
+
+                                                        android:id="@+id/tvMyInfoEa4"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="match_parent"
+                                                        android:layout_marginTop="12dp"
+                                                        android:layout_weight="1"
+                                                        android:background="@drawable/button_background"
+                                                        android:text="999"
+                                                        android:textAlignment="center"
+                                                        android:textColor="#FF7012"
+                                                        android:textSize="20dp"
+                                                        android:textStyle="bold" />
+
+                                                </LinearLayout>
+                                            </LinearLayout>
+
+                                        </LinearLayout>
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
-                                            android:layout_height="0dp"
-                                            android:layout_weight="1"
-                                            android:orientation="vertical">
+                                            android:layout_height="match_parent"
+                                            android:orientation="horizontal"
+                                            android:visibility="gone">
 
                                             <TextView
-
+                                                android:id="@+id/textView8"
                                                 android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:layout_marginTop="15dp"
+                                                android:layout_height="wrap_content"
                                                 android:layout_weight="1"
-                                                android:text="개인정보수정하기"
+                                                android:padding="10dp"
+                                                android:text="남은금액:"
                                                 android:textAlignment="center"
-                                                android:textColor="#22741C"
-                                                android:textSize="25dp"
+                                                android:textColor="@color/black"
+                                                android:textSize="20dp"
+                                                android:textStyle="bold" />
+
+                                            <TextView
+                                                android:id="@+id/myInfoMoney1"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="1"
+                                                android:padding="10dp"
+                                                android:text="남은금액대기중.."
+                                                android:textAlignment="center"
+                                                android:textColor="@color/black"
+                                                android:textSize="20dp"
+                                                android:textStyle="bold" />
+
+                                            <TextView
+                                                android:id="@+id/textView9"
+                                                android:layout_width="255dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="1"
+                                                android:padding="10dp"
+                                                android:text="원"
+                                                android:textAlignment="center"
+                                                android:textColor="@color/black"
+                                                android:textSize="20dp"
                                                 android:textStyle="bold" />
                                         </LinearLayout>
 
+                                    </LinearLayout>
+                                </ScrollView>
+                            </LinearLayout>
+
+                            <LinearLayout
+
+                                android:id="@+id/myInfoLay"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:visibility="gone">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1"
+                                        android:orientation="vertical">
+
+                                        <TextView
+
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginTop="15dp"
+                                            android:layout_weight="1"
+                                            android:text="개인정보수정하기"
+                                            android:textAlignment="center"
+                                            android:textColor="#22741C"
+                                            android:textSize="25dp"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+
+                                            android:layout_width="133dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:padding="10dp"
+                                            android:text="ID"
+                                            android:textAlignment="center"
+                                            android:textColor="#22741C"
+                                            android:textSize="20dp" />
+
+                                        <EditText
+                                            android:id="@+id/edFind"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:ems="10"
+                                            android:inputType="textPersonName"
+                                            android:textColor="@color/black" />
+
+                                        <Button
+                                            android:id="@+id/btnFind"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="15dp"
+                                            android:layout_marginTop="5dp"
+                                            android:layout_weight="1"
+                                            android:background="@drawable/button_background2"
+                                            android:text="찾기"
+                                            android:textColor="#FF7012"
+                                            android:textSize="17dp" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="4"
+                                        android:orientation="vertical">
+
                                         <LinearLayout
                                             android:layout_width="match_parent"
-                                            android:layout_height="0dp"
-                                            android:layout_weight="1"
-                                            android:orientation="horizontal">
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1">
 
                                             <TextView
 
-                                                android:layout_width="133dp"
-                                                android:layout_height="match_parent"
+                                                android:layout_width="60dp"
+                                                android:layout_height="wrap_content"
                                                 android:layout_weight="1"
-                                                android:padding="10dp"
-                                                android:text="ID"
+                                                android:text="이름 :"
                                                 android:textAlignment="center"
                                                 android:textColor="#22741C"
                                                 android:textSize="20dp" />
 
                                             <EditText
-                                                android:id="@+id/edFind"
+                                                android:id="@+id/edName"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_weight="1"
@@ -2350,178 +2442,132 @@
                                                 android:inputType="textPersonName"
                                                 android:textColor="@color/black" />
 
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1">
+
+                                            <TextView
+
+                                                android:layout_width="60dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="1"
+                                                android:text="연락처 :"
+                                                android:textAlignment="center"
+                                                android:textColor="#22741C"
+                                                android:textSize="20dp" />
+
+                                            <EditText
+                                                android:id="@+id/edHp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="1"
+                                                android:ems="10"
+                                                android:inputType="textPersonName"
+                                                android:textColor="@color/black" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:orientation="horizontal">
+
+                                            <TextView
+                                                android:id="@+id/textView14"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="40dp"
+                                                android:layout_marginTop="10dp"
+                                                android:layout_weight="1"
+                                                android:paddingTop="10dp"
+                                                android:text="내용확인 ▽▼"
+                                                android:textAlignment="center"
+                                                android:textColor="#22741C"
+                                                android:textSize="20dp" />
+
                                             <Button
-                                                android:id="@+id/btnFind"
+                                                android:id="@+id/btnUpdate"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginLeft="15dp"
                                                 android:layout_marginTop="5dp"
                                                 android:layout_weight="1"
                                                 android:background="@drawable/button_background2"
-                                                android:text="찾기"
+                                                android:text="업데이트수행"
                                                 android:textColor="#FF7012"
+                                                android:textSize="17dp" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="4"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1">
+
+                                            <TextView
+                                                android:id="@+id/textView19"
+                                                android:layout_width="31dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="1"
+                                                android:text="수정된 이름      :"
+                                                android:textAlignment="center"
+                                                android:textColor="#22741C"
+                                                android:textSize="20dp" />
+
+                                            <TextView
+                                                android:id="@+id/tvUpName1"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="1"
+                                                android:text="대기중.."
+                                                android:textColor="#22741C"
                                                 android:textSize="17dp" />
 
                                         </LinearLayout>
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
-                                            android:layout_height="0dp"
-                                            android:layout_weight="4"
-                                            android:orientation="vertical">
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1">
 
-                                            <LinearLayout
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:layout_weight="1">
+                                            <TextView
 
-                                                <TextView
-
-                                                    android:layout_width="60dp"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_weight="1"
-                                                    android:text="이름 :"
-                                                    android:textAlignment="center"
-                                                    android:textColor="#22741C"
-                                                    android:textSize="20dp" />
-
-                                                <EditText
-                                                    android:id="@+id/edName"
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_weight="1"
-                                                    android:ems="10"
-                                                    android:inputType="textPersonName"
-                                                    android:textColor="@color/black" />
-
-                                            </LinearLayout>
-
-                                            <LinearLayout
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:layout_weight="1">
-
-                                                <TextView
-
-                                                    android:layout_width="60dp"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_weight="1"
-                                                    android:text="연락처 :"
-                                                    android:textAlignment="center"
-                                                    android:textColor="#22741C"
-                                                    android:textSize="20dp" />
-
-                                                <EditText
-                                                    android:id="@+id/edHp"
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_weight="1"
-                                                    android:ems="10"
-                                                    android:inputType="textPersonName"
-                                                    android:textColor="@color/black" />
-
-                                            </LinearLayout>
-
-                                            <LinearLayout
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
+                                                android:layout_width="31dp"
+                                                android:layout_height="wrap_content"
                                                 android:layout_weight="1"
-                                                android:orientation="horizontal">
+                                                android:text="수정된 연락처  :"
+                                                android:textAlignment="center"
+                                                android:textColor="#22741C"
+                                                android:textSize="20dp" />
 
-                                                <TextView
-                                                    android:id="@+id/textView14"
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="40dp"
-                                                    android:layout_marginTop="10dp"
-                                                    android:layout_weight="1"
-                                                    android:paddingTop="10dp"
-                                                    android:text="내용확인 ▽▼"
-                                                    android:textAlignment="center"
-                                                    android:textColor="#22741C"
-                                                    android:textSize="20dp" />
+                                            <TextView
+                                                android:id="@+id/tvUpHp1"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="1"
+                                                android:text="대기중.."
+                                                android:textColor="#22741C"
+                                                android:textSize="17dp" />
 
-                                                <Button
-                                                    android:id="@+id/btnUpdate"
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginLeft="15dp"
-                                                    android:layout_marginTop="5dp"
-                                                    android:layout_weight="1"
-                                                    android:background="@drawable/button_background2"
-                                                    android:text="업데이트수행"
-                                                    android:textColor="#FF7012"
-                                                    android:textSize="17dp" />
-
-                                            </LinearLayout>
-
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="0dp"
-                                            android:layout_weight="4"
-                                            android:orientation="vertical">
-
-                                            <LinearLayout
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:layout_weight="1">
-
-                                                <TextView
-                                                    android:id="@+id/textView19"
-                                                    android:layout_width="31dp"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_weight="1"
-                                                    android:text="수정된 이름      :"
-                                                    android:textAlignment="center"
-                                                    android:textColor="#22741C"
-                                                    android:textSize="20dp" />
-
-                                                <TextView
-                                                    android:id="@+id/tvUpName1"
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_weight="1"
-                                                    android:text="대기중.."
-                                                    android:textColor="#22741C"
-                                                    android:textSize="17dp" />
-
-                                            </LinearLayout>
-
-                                            <LinearLayout
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:layout_weight="1">
-
-                                                <TextView
-
-                                                    android:layout_width="31dp"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_weight="1"
-                                                    android:text="수정된 연락처  :"
-                                                    android:textAlignment="center"
-                                                    android:textColor="#22741C"
-                                                    android:textSize="20dp" />
-
-                                                <TextView
-                                                    android:id="@+id/tvUpHp1"
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_weight="1"
-                                                    android:text="대기중.."
-                                                    android:textColor="#22741C"
-                                                    android:textSize="17dp" />
-
-                                            </LinearLayout>
                                         </LinearLayout>
                                     </LinearLayout>
-
-
                                 </LinearLayout>
 
-                            </FrameLayout>
 
-                        </LinearLayout>
+                            </LinearLayout>
+
+                        </FrameLayout>
 
                     </LinearLayout>
                 </LinearLayout>
