@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             tvCoinTol1,tvCoinTol2,tvCoinTol3,tvCoinTol4;
 
     ImageView imgBot1,imgBot2,imgBot3,imgBot4;
-    Button btnPay;
+    Button btnPay, btnCancel1, btnCancel2, btnCancel3, btnCancel4;
 
     // 장바구니 안 결제하기 관련 변수 선언
     Button btn50000,btn10000,btn5000,btn1000,btnCoinRe,btnPayment;
@@ -218,6 +218,15 @@ public class MainActivity extends AppCompatActivity {
         tvCoinTol3= (TextView) findViewById(R.id.tvCoinTol3);
         tvCoinTol4= (TextView) findViewById(R.id.tvCoinTol4);
 
+        btnCancel1=(Button)findViewById(R.id.btnCancel1);// 장바구니 담긴목록 취소 버튼
+        btnCancel2=(Button)findViewById(R.id.btnCancel2);
+        btnCancel3=(Button)findViewById(R.id.btnCancel3);
+        btnCancel4=(Button)findViewById(R.id.btnCancel4);
+
+        btnCancel1.setOnClickListener(mClickListener);
+        btnCancel2.setOnClickListener(mClickListener);
+        btnCancel3.setOnClickListener(mClickListener);
+        btnCancel4.setOnClickListener(mClickListener);
 
 
 
@@ -307,22 +316,23 @@ public class MainActivity extends AppCompatActivity {
                     layoutView();
                     bottleLayout.setVisibility(View.VISIBLE);
                     fyBot2.setVisibility(View.INVISIBLE);
-                    if(onionTotal>0 ||carrotTotal >0||tomatoTotal >0||potatoTotal >0)
-                    {
+                    if (onionTotal > 0 || carrotTotal > 0 || tomatoTotal > 0 || potatoTotal > 0) {
                         fyBotWait.setVisibility(View.GONE);//장바구니 대기화면 \off
                         fyBot1.setVisibility(View.VISIBLE);
-                    }else{fyBotWait.setVisibility(View.VISIBLE);}
+                    } else {
+                        fyBotWait.setVisibility(View.VISIBLE);
+                    }
                     break;
                 case R.id.btnMy:
                     layoutView();
                     myLayout.setVisibility(View.VISIBLE);
                     myInfoLay.setVisibility(View.GONE);
-                    if(onionTotalEa>0||carrotTotalEa>0||tomatoTotalEa>0||potatoTotalEa>0)
-                    {
+                    if (onionTotalEa > 0 || carrotTotalEa > 0 || tomatoTotalEa > 0 || potatoTotalEa > 0) {
                         fyInfoWait.setVisibility(View.GONE);
                         myBuyListLay.setVisibility(View.VISIBLE);
+                    } else {
+                        fyInfoWait.setVisibility(View.VISIBLE);
                     }
-                    else{ fyInfoWait.setVisibility(View.VISIBLE); }
                     break;
                 case R.id.btnShop:
                     layoutView();
@@ -340,84 +350,71 @@ public class MainActivity extends AppCompatActivity {
                     }
                     OnionEa = Integer.parseInt(edCnt1.getText().toString());
 
-                    if((OnionEa+onionTotalEa)<100)
-                    {
+                    if ((OnionEa + onionTotalEa) < 100) {
 
-                        if (OnionEa > 100)
-                        {
+                        if (OnionEa > 100) {
                             Toast.makeText(getApplicationContext(), "1회 최대 100개", Toast.LENGTH_SHORT).show();
                             OnionEa = 100;
                             edCnt1.setText((OnionEa + ""));
-                        }
-                        else
-                        {
+                        } else {
                             OnionEa++;
                             edCnt1.setText(OnionEa + "");
                             tvOnionAni.startAnimation(tvUp);
                         }
+                    } else {
+                        Toast.makeText(getApplicationContext(), "상품 최대구매 개수는 1000개 입니다. ", Toast.LENGTH_SHORT).show();
                     }
-                    else{ Toast.makeText(getApplicationContext(), "상품 최대구매 개수는 1000개 입니다. ", Toast.LENGTH_SHORT).show();}
                     break;
 
 //                    OnionEa++;
 //                    edCnt1.setText(OnionEa+"");
 //                    tvOnionAni.startAnimation(tvUp);
 //                    break;
-
                 case R.id.btnM1://양파감소버튼========================================================
                     OnionEa--;
-                    if(OnionEa <= 0){
+                    if (OnionEa <= 0) {
                         OnionEa = 0;
-                        edCnt1.setText(OnionEa+"");
-                    }
-                    else{
-                        edCnt1.setText(OnionEa+"");
+                        edCnt1.setText(OnionEa + "");
+                    } else {
+                        edCnt1.setText(OnionEa + "");
                         tvOnionAni.startAnimation(tvDown);
-                    }break;
+                    }
+                    break;
 
                 case R.id.btnInten1://양파 담기 버튼==================================================
-                    if((edCnt1.getText().toString()).equals(""))//에디트 텍스트 창에 공란 입력시 변수화 표시부분을 0으로 초기화
+                    if ((edCnt1.getText().toString()).equals(""))//에디트 텍스트 창에 공란 입력시 변수화 표시부분을 0으로 초기화
                     {
-                        OnionEa=0;
-                        edCnt1.setText((OnionEa+""));
+                        OnionEa = 0;
+                        edCnt1.setText((OnionEa + ""));
                     }
                     OnionEa = Integer.parseInt(edCnt1.getText().toString());
-                    if((OnionEa+onionTotalEa)<=100)
-                    {
+                    if ((OnionEa + onionTotalEa) <= 100) {
                         int su1 = Integer.parseInt(edCnt1.getText().toString());//에디트 텍스트 창의 값을 받아온다
                         OnionEa = su1;
 
-                        if(OnionEa == 0 || su1 == 0 )
-                        {
-                            Toast.makeText(getApplicationContext(), "채소를 담아 주세요.",  Toast.LENGTH_SHORT).show();
-                        }
-
-                        else if(OnionEa > 0)
-                        {
-                            if(OnionEa>100){
-                                OnionEa=100;
-                                edCnt1.setText(OnionEa+"");
-                                Toast.makeText(getApplicationContext(), "1회 최대 100개",  Toast.LENGTH_SHORT).show();
-                            }
-                            else
-                            {
-                                onionTotal =OnionEa*1500;
+                        if (OnionEa == 0 || su1 == 0) {
+                            Toast.makeText(getApplicationContext(), "채소를 담아 주세요.", Toast.LENGTH_SHORT).show();
+                        } else if (OnionEa > 0) {
+                            if (OnionEa > 100) {
+                                OnionEa = 100;
+                                edCnt1.setText(OnionEa + "");
+                                Toast.makeText(getApplicationContext(), "1회 최대 100개", Toast.LENGTH_SHORT).show();
+                            } else {
+                                onionTotal = OnionEa * 1500;
                                 onionLayout.setVisibility(View.VISIBLE);
                                 tvStore1.setText("업체: 믿음채소");
                                 tvVag1.setText("양파");
-                                tvEa1.setText(OnionEa+"");
-                                tvCoinTol1.setText((onionTotal+"")+"원");
+                                tvEa1.setText(OnionEa + "");
+                                tvCoinTol1.setText((onionTotal + "") + "원");
                                 imgBot1.setImageResource(R.drawable.yangpa);
                                 tvReviewVa1.setText("양파");//장바구니에 내가 담은목록
-                                tvReviewCo1.setText(onionTotal+"");//장바구니에 내가 담은목록
+                                tvReviewCo1.setText(onionTotal + "");//장바구니에 내가 담은목록
                                 tvWon1.setText("원");
-                                Toast.makeText(getApplicationContext(), "양파가 장바구니에 담겼습니다.",  Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "양파가 장바구니에 담겼습니다.", Toast.LENGTH_SHORT).show();
                                 fyBotWait.setVisibility(View.GONE);//장바구니 대기화면 \off
                             }
                         }
-                    }
-                    else
-                    {
+                    } else {
                         Toast.makeText(getApplicationContext(), "상품 최대구매 개수는 1000개 입니다. ", Toast.LENGTH_SHORT).show();
                     }
                     break;
@@ -443,20 +440,18 @@ public class MainActivity extends AppCompatActivity {
 //                    break;
 
 
-
-
 //shop 레이아웃 당근제어 버튼===========================================================================
 //==================================================================================================
 //==================================================================================================
                 case R.id.btnP2://당근 증감버튼
-                    if((edCnt2.getText().toString()).equals(""))//에디트 텍스트 창에 공란 입력시 변수화 표시부분을 0으로 초기화
+                    if ((edCnt2.getText().toString()).equals(""))//에디트 텍스트 창에 공란 입력시 변수화 표시부분을 0으로 초기화
                     {
-                        CarrotEa=0;
-                        edCnt2.setText((CarrotEa+""));
+                        CarrotEa = 0;
+                        edCnt2.setText((CarrotEa + ""));
                     }
-                    CarrotEa=Integer.parseInt(edCnt2.getText().toString());
+                    CarrotEa = Integer.parseInt(edCnt2.getText().toString());
 
-                    if((CarrotEa+carrotTotalEa )<100) {
+                    if ((CarrotEa + carrotTotalEa) < 100) {
                         if (CarrotEa > 100) {
                             Toast.makeText(getApplicationContext(), "1회 최대 100개", Toast.LENGTH_SHORT).show();
                             CarrotEa = 100;
@@ -466,8 +461,9 @@ public class MainActivity extends AppCompatActivity {
                             edCnt2.setText(CarrotEa + "");
                             tvCarrotAni.startAnimation(tvUp);
                         }
+                    } else {
+                        Toast.makeText(getApplicationContext(), "상품 최대구매 개수는 1000개 입니다. ", Toast.LENGTH_SHORT).show();
                     }
-                    else{ Toast.makeText(getApplicationContext(), "상품 최대구매 개수는 1000개 입니다. ", Toast.LENGTH_SHORT).show();}
                     break;
 //                    CarrotEa++;
 //                    edCnt2.setText(CarrotEa+"");
@@ -475,43 +471,36 @@ public class MainActivity extends AppCompatActivity {
 //                    break;
                 case R.id.btnM2://당근 감소버튼=======================================================
                     CarrotEa--;
-                    if(CarrotEa <= 0){
+                    if (CarrotEa <= 0) {
                         CarrotEa = 0;
-                        edCnt2.setText(CarrotEa+"");
-                    }
-                    else{
-                        edCnt2.setText(CarrotEa+"");
+                        edCnt2.setText(CarrotEa + "");
+                    } else {
+                        edCnt2.setText(CarrotEa + "");
                         tvCarrotAni.startAnimation(tvDown);
-                    }break;
+                    }
+                    break;
 
                 case R.id.btnInten2://당근 담기 버튼==================================================
-                    if((edCnt2.getText().toString()).equals(""))//에디트 텍스트 창에 공란 입력시 변수화 표시부분을 0으로 초기화
+                    if ((edCnt2.getText().toString()).equals(""))//에디트 텍스트 창에 공란 입력시 변수화 표시부분을 0으로 초기화
                     {
-                        CarrotEa=0;
-                        edCnt2.setText((CarrotEa+""));
+                        CarrotEa = 0;
+                        edCnt2.setText((CarrotEa + ""));
                     }
-                    CarrotEa=Integer.parseInt(edCnt2.getText().toString());
+                    CarrotEa = Integer.parseInt(edCnt2.getText().toString());
 
-                    if((CarrotEa+carrotTotalEa )<=100)
-                    {
+                    if ((CarrotEa + carrotTotalEa) <= 100) {
 
                         int su2 = Integer.parseInt(edCnt2.getText().toString());//에디트 텍스트 창의 값을 받아온다
                         CarrotEa = su2;
 
-                        if (CarrotEa == 0 || su2 == 0)
-                        {
+                        if (CarrotEa == 0 || su2 == 0) {
                             Toast.makeText(getApplicationContext(), "채소를 담아 주세요.", Toast.LENGTH_SHORT).show();
-                        }
-                        else if (CarrotEa > 0)
-                        {
-                            if (CarrotEa > 100)
-                            {
+                        } else if (CarrotEa > 0) {
+                            if (CarrotEa > 100) {
                                 CarrotEa = 100;
                                 edCnt2.setText(CarrotEa + "");
                                 Toast.makeText(getApplicationContext(), "1회 최대 100개", Toast.LENGTH_SHORT).show();
-                            }
-                            else
-                            {
+                            } else {
                                 carrotTotal = CarrotEa * 900;
                                 carrotLayout.setVisibility(View.VISIBLE);
                                 tvStore2.setText("업체: 희망채소");
@@ -526,9 +515,7 @@ public class MainActivity extends AppCompatActivity {
                                 fyBotWait.setVisibility(View.GONE);//장바구니 대기화면 \off
                             }
                         }
-                    }
-                    else
-                    {
+                    } else {
                         Toast.makeText(getApplicationContext(), "상품 최대구매 개수는 1000개 입니다. ", Toast.LENGTH_SHORT).show();
                     }
                     break;
@@ -557,13 +544,13 @@ public class MainActivity extends AppCompatActivity {
 //==================================================================================================
                 case R.id.btnP3://토마토 증감버튼=====================================================
 
-                    if((edCnt3.getText().toString()).equals(""))//에디트 텍스트 창에 공란 입력시 변수화 표시부분을 0으로 초기화
+                    if ((edCnt3.getText().toString()).equals(""))//에디트 텍스트 창에 공란 입력시 변수화 표시부분을 0으로 초기화
                     {
-                        TomatoEa=0;
-                        edCnt3.setText((TomatoEa+""));
+                        TomatoEa = 0;
+                        edCnt3.setText((TomatoEa + ""));
                     }
-                    TomatoEa=Integer.parseInt(edCnt3.getText().toString());
-                    if((TomatoEa+tomatoTotalEa )<100) {
+                    TomatoEa = Integer.parseInt(edCnt3.getText().toString());
+                    if ((TomatoEa + tomatoTotalEa) < 100) {
                         if (TomatoEa > 100) {
                             Toast.makeText(getApplicationContext(), "1회 최대 100개", Toast.LENGTH_SHORT).show();
                             TomatoEa = 100;
@@ -573,8 +560,9 @@ public class MainActivity extends AppCompatActivity {
                             edCnt3.setText(TomatoEa + "");
                             tvTomatoAni.startAnimation(tvUp);
                         }
+                    } else {
+                        Toast.makeText(getApplicationContext(), "상품 최대구매 개수는 1000개 입니다. ", Toast.LENGTH_SHORT).show();
                     }
-                    else{ Toast.makeText(getApplicationContext(), "상품 최대구매 개수는 1000개 입니다. ", Toast.LENGTH_SHORT).show();}
                     break;
 //                    TomatoEa++;
 //                    edCnt3.setText(TomatoEa+"");
@@ -582,40 +570,34 @@ public class MainActivity extends AppCompatActivity {
 //                    break;
                 case R.id.btnM3://토마토 감소버튼
                     TomatoEa--;
-                    if(TomatoEa <= 0){
+                    if (TomatoEa <= 0) {
                         TomatoEa = 0;
-                        edCnt3.setText(TomatoEa+"");
-                    }
-                    else{
+                        edCnt3.setText(TomatoEa + "");
+                    } else {
                         tvTomatoAni.startAnimation(tvDown);
-                        edCnt3.setText(TomatoEa+"");
-                    }break;
+                        edCnt3.setText(TomatoEa + "");
+                    }
+                    break;
                 case R.id.btnInten3://토마토 담기 버튼
 
-                    if((edCnt3.getText().toString()).equals(""))//에디트 텍스트 창에 공란 입력시 변수화 표시부분을 0으로 초기화
+                    if ((edCnt3.getText().toString()).equals(""))//에디트 텍스트 창에 공란 입력시 변수화 표시부분을 0으로 초기화
                     {
-                        TomatoEa=0;
-                        edCnt3.setText((TomatoEa+""));
+                        TomatoEa = 0;
+                        edCnt3.setText((TomatoEa + ""));
                     }
-                    TomatoEa=Integer.parseInt(edCnt3.getText().toString());
-                    if((TomatoEa+tomatoTotalEa )<=100) {
+                    TomatoEa = Integer.parseInt(edCnt3.getText().toString());
+                    if ((TomatoEa + tomatoTotalEa) <= 100) {
                         int su3 = Integer.parseInt(edCnt3.getText().toString());//에디트 텍스트 창의 값을 받아온다
                         TomatoEa = su3;
 
-                        if (TomatoEa == 0 || su3 == 0)
-                        {
+                        if (TomatoEa == 0 || su3 == 0) {
                             Toast.makeText(getApplicationContext(), "채소를 담아 주세요.", Toast.LENGTH_SHORT).show();
-                        }
-                        else if (TomatoEa > 0)
-                        {
-                            if (TomatoEa > 100)
-                            {
+                        } else if (TomatoEa > 0) {
+                            if (TomatoEa > 100) {
                                 TomatoEa = 100;
                                 edCnt3.setText(TomatoEa + "");
                                 Toast.makeText(getApplicationContext(), "1회 최대 100개", Toast.LENGTH_SHORT).show();
-                            }
-                            else
-                            {
+                            } else {
                                 tomatoTotal = TomatoEa * 900;
                                 tomatoLayout.setVisibility(View.VISIBLE);
                                 tvStore3.setText("업체: 소망채소");
@@ -630,9 +612,7 @@ public class MainActivity extends AppCompatActivity {
                                 fyBotWait.setVisibility(View.GONE);//장바구니 대기화면 \off
                             }
                         }
-                    }
-                    else
-                    {
+                    } else {
                         Toast.makeText(getApplicationContext(), "상품 최대구매 개수는 1000개 입니다. ", Toast.LENGTH_SHORT).show();
                     }
                     break;
@@ -659,13 +639,13 @@ public class MainActivity extends AppCompatActivity {
 //==========================================================================================
 
                 case R.id.btnP4://감자 증감버튼
-                    if((edCnt4.getText().toString()).equals(""))//에디트 텍스트 창에 공란 입력시 변수화 표시부분을 0으로 초기화
+                    if ((edCnt4.getText().toString()).equals(""))//에디트 텍스트 창에 공란 입력시 변수화 표시부분을 0으로 초기화
                     {
-                        potatoEa=0;
-                        edCnt4.setText((potatoEa+""));
+                        potatoEa = 0;
+                        edCnt4.setText((potatoEa + ""));
                     }
-                    potatoEa=Integer.parseInt(edCnt4.getText().toString());
-                    if((potatoEa+potatoTotalEa )<100) {
+                    potatoEa = Integer.parseInt(edCnt4.getText().toString());
+                    if ((potatoEa + potatoTotalEa) < 100) {
                         if (potatoEa > 100) {
                             Toast.makeText(getApplicationContext(), "1회 최대 100개", Toast.LENGTH_SHORT).show();
                             potatoEa = 100;
@@ -675,27 +655,28 @@ public class MainActivity extends AppCompatActivity {
                             edCnt4.setText(potatoEa + "");
                             tvPotatoAni.startAnimation(tvUp);
                         }
+                    } else {
+                        Toast.makeText(getApplicationContext(), "상품 최대구매 개수는 1000개 입니다. ", Toast.LENGTH_SHORT).show();
                     }
-                    else{ Toast.makeText(getApplicationContext(), "상품 최대구매 개수는 1000개 입니다. ", Toast.LENGTH_SHORT).show();}
                     break;
                 case R.id.btnM4://감자 감소버튼
                     potatoEa--;
-                    if(potatoEa <= 0){
+                    if (potatoEa <= 0) {
                         potatoEa = 0;
-                        edCnt4.setText(potatoEa+"");
-                    }
-                    else{
-                        edCnt4.setText(potatoEa+"");
+                        edCnt4.setText(potatoEa + "");
+                    } else {
+                        edCnt4.setText(potatoEa + "");
                         tvPotatoAni.startAnimation(tvDown);
-                    }break;
-                case R.id.btnInten4://감자 담기 부분
-                    if((edCnt4.getText().toString()).equals(""))//에디트 텍스트 창에 공란 입력시 변수화 표시부분을 0으로 초기화
-                    {
-                        potatoEa=0;
-                        edCnt4.setText((potatoEa+""));
                     }
-                    potatoEa=Integer.parseInt(edCnt4.getText().toString());
-                    if((potatoEa+potatoTotalEa)<=100) {
+                    break;
+                case R.id.btnInten4://감자 담기 부분
+                    if ((edCnt4.getText().toString()).equals(""))//에디트 텍스트 창에 공란 입력시 변수화 표시부분을 0으로 초기화
+                    {
+                        potatoEa = 0;
+                        edCnt4.setText((potatoEa + ""));
+                    }
+                    potatoEa = Integer.parseInt(edCnt4.getText().toString());
+                    if ((potatoEa + potatoTotalEa) <= 100) {
                         int su4 = Integer.parseInt(edCnt4.getText().toString());//에디트 텍스트 창의 값을 받아온다
                         potatoEa = su4;
 
@@ -721,56 +702,120 @@ public class MainActivity extends AppCompatActivity {
                                 fyBotWait.setVisibility(View.GONE);//장바구니 대기화면 \off
                             }
                         }
-                    }
-                    else
-                    {
+                    } else{
                         Toast.makeText(getApplicationContext(), "상품 최대구매 개수는 1000개 입니다. ", Toast.LENGTH_SHORT).show();
                     }
 
                     break;
+//장바구니 담김 물품 취소버튼==========================================================================
+//장바구니 담김 물품 취소버튼==========================================================================
+                case R.id.btnCancel1:
+                    OnionEa = 0;//양파 갯수 초기화
+                    onionTotal = 0;//양파 가격 초기화
+                    onionLayout.setVisibility(View.GONE);//양파레이아웃 가리기.
+
+                    if(CarrotEa==0 &&TomatoEa==0 &&potatoEa==0 )//다른 채소 까지 비워져 있으면 대기화면 on
+                    {
+                        fyBotWait.setVisibility(View.VISIBLE);
+                    } else{
+                        fyBotWait.setVisibility(View.GONE);
+                    }
+                    tvReviewVa1.setText("");//뒷단 결제페이지 내역 초기화
+                    tvReviewCo1.setText("");
+                    tvWon1.setText("");
+
+
+                    break;
+
+                case R.id.btnCancel2:
+                    CarrotEa  = 0;//당근 갯수 초기화
+                    carrotTotal  = 0;//당근 가격 초기화
+                    tvVag2.setText("");//빈 공간을 줌으로써
+                    carrotLayout.setVisibility(View.GONE);//당근레이아웃 가리기.
+
+                    if(OnionEa==0 &&TomatoEa==0 &&potatoEa==0 )//다른 채소 까지 비워져 있으면 대기화면 on
+                    {
+                        fyBotWait.setVisibility(View.VISIBLE);
+                    } else{
+                        fyBotWait.setVisibility(View.GONE);
+                    }
+                    tvReviewVa2.setText("");//뒷단 결제페이지 내역 초기화
+                    tvReviewCo2.setText("");
+                    tvWon2.setText("");
+                    break;
+
+                case R.id.btnCancel3:
+                    TomatoEa = 0;//토마토 갯수 초기화
+                    tomatoTotal = 0;//토마토 가격 초기화
+                    tvVag3.setText("");//빈 공간을 줌으로써
+                    tomatoLayout.setVisibility(View.GONE);//토마토레이아웃 가리기.
+
+                    if(OnionEa==0 &&CarrotEa==0 &&potatoEa==0 )//다른 채소 까지 비워져 있으면 대기화면 on
+                    {
+                        fyBotWait.setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        fyBotWait.setVisibility(View.GONE);
+                    }
+                    tvReviewVa3.setText("");//뒷단 결제페이지 내역 초기화
+                    tvReviewCo3.setText("");
+                    tvWon3.setText("");
+                    break;
+
+                case R.id.btnCancel4:
+                    potatoEa = 0;//감자 갯수 초기화
+                    potatoTotal = 0;//감자 가격 초기화
+                    potatoLayout.setVisibility(View.GONE);//토마토레이아웃 가리기.
+
+                    if(OnionEa==0 &&CarrotEa==0 &&TomatoEa==0 )//다른 채소 까지 비워져 있으면 대기화면 on
+                    {
+                        fyBotWait.setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        fyBotWait.setVisibility(View.GONE);
+                    }
+                    tvReviewVa4.setText("");//뒷단 결제페이지 내역 초기화
+                    tvReviewCo4.setText("");
+                    tvWon4.setText("");
+                    break;
+
 //장바구니 결제 화면 제어 부분.=========================================================================
 //장바구니 결제 화면 제어 부분.=========================================================================
 //장바구니 결제 화면 제어 부분.=========================================================================
                 case R.id.btnPay:
-                    if(onionTotal==0 && carrotTotal==0 && tomatoTotal==0 && potatoTotal==0 )
-                    {
-                        vageTotalMoney =0;
+                    if (onionTotal == 0 && carrotTotal == 0 && tomatoTotal == 0 && potatoTotal == 0) {
+                        vageTotalMoney = 0;
+                    } else {
+                        vageTotalMoney = onionTotal + carrotTotal + tomatoTotal + potatoTotal;
                     }
-                    else
-                        {
-                            vageTotalMoney =onionTotal+carrotTotal+tomatoTotal+potatoTotal;
-                        }
 
-                    tvTolMoney.setText((vageTotalMoney+"")+"원");//결제 화면창으로 이동 할때 채소값들이 합산되어 보여짐.
+                    tvTolMoney.setText((vageTotalMoney + "") + "원");//결제 화면창으로 이동 할때 채소값들이 합산되어 보여짐.
                     fyBotWait.setVisibility(View.GONE);//장바구니 안내 화면
                     fyBot1.setVisibility(View.INVISIBLE);
                     fyBot2.setVisibility(View.VISIBLE);
-                break;
+                    break;
                 case R.id.btn50000:
-                    fillMoeny+=50000;
-                    tvInCoin.setText(fillMoeny+"");
+                    fillMoeny += 50000;
+                    tvInCoin.setText(fillMoeny + "");
                     break;
                 case R.id.btn10000:
-                    fillMoeny+=10000;
-                    tvInCoin.setText(fillMoeny+"");
+                    fillMoeny += 10000;
+                    tvInCoin.setText(fillMoeny + "");
                     break;
                 case R.id.btn5000:
-                    fillMoeny+=5000;
-                    tvInCoin.setText(fillMoeny+"");
+                    fillMoeny += 5000;
+                    tvInCoin.setText(fillMoeny + "");
                     break;
                 case R.id.btn1000:
-                    fillMoeny+=1000;
-                    tvInCoin.setText(fillMoeny+"");
+                    fillMoeny += 1000;
+                    tvInCoin.setText(fillMoeny + "");
                     break;
                 case R.id.btnCoinRe:
-                    if(fillMoeny<=0)
-                    {
+                    if (fillMoeny <= 0) {
                         tvInfo.setText("금액을 반환 할 수 없습니다..");
-                    }
-                    else
-                    {
-                        fillMoeny=0;
-                        tvInCoin.setText(fillMoeny+"");
+                    } else {
+                        fillMoeny = 0;
+                        tvInCoin.setText(fillMoeny + "");
                         tvInfo.setText("금액이 반환 됩니다.");
 
 //                        try {
@@ -783,12 +828,11 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.btnPayment://장바구니 안 최종결제부분.
 
-                    if(vageTotalMoney <= fillMoeny && vageTotalMoney!=0)
-                    {
+                    if (vageTotalMoney <= fillMoeny && vageTotalMoney != 0) {
 
-                        int num = fillMoeny-vageTotalMoney;
+                        int num = fillMoeny - vageTotalMoney;
                         tvInfo.setText("결제가 완료 되었습니다.");
-                        tvInCoin.setText(num+"");
+                        tvInCoin.setText(num + "");
                         tvTolMoney.setText("");
                         fillMoeny = num;
                         stayMoney = num;
@@ -807,7 +851,7 @@ public class MainActivity extends AppCompatActivity {
                         tvWon4.setText("");
 
                         tvTolMoney.setText("");//담겼던 야채 금액 초기화.
-                        vageTotalMoney=0;
+                        vageTotalMoney = 0;
 
 
                         onionLayout.setVisibility(View.GONE);//결제가 다 되어 장바구니의 각야채 레이아웃 곤
@@ -815,8 +859,7 @@ public class MainActivity extends AppCompatActivity {
                         tomatoLayout.setVisibility(View.GONE);
                         potatoLayout.setVisibility(View.GONE);
 
-                        if(onionTotal>0)
-                        {
+                        if (onionTotal > 0) {
                             //양파 관련 구매내역 남기기
                             myInfoVa1.setVisibility(View.VISIBLE);//나의정보창에 구매내역 확인 뷰.
                             myInfoImg1.setImageResource(R.drawable.yangpa);
@@ -826,19 +869,17 @@ public class MainActivity extends AppCompatActivity {
                             tvMyInfoEa1.setText(onionTotalEa + "");
                         }
 
-                        if(carrotTotal>0)
-                        {
+                        if (carrotTotal > 0) {
                             //당근 관련 구매내역 남기기
                             myInfoVa2.setVisibility(View.VISIBLE);//나의정보창에 구매내역 확인 뷰.
                             myInfoImg2.setImageResource(R.drawable.carrot);
                             tvMyinfoStore2.setText("업체: 희망채소");
                             tvMyInfoVa2.setText("당근");
-                            carrotTotalEa=CarrotEa+carrotTotalEa;//나의 정보에 누적될 최종갯수
-                            tvMyInfoEa2.setText(carrotTotalEa+"");
+                            carrotTotalEa = CarrotEa + carrotTotalEa;//나의 정보에 누적될 최종갯수
+                            tvMyInfoEa2.setText(carrotTotalEa + "");
                         }
 
-                        if(tomatoTotal>0)
-                        {
+                        if (tomatoTotal > 0) {
                             //토마토 관련 구매내역 남기기
                             myInfoVa3.setVisibility(View.VISIBLE);//나의정보창에 구매내역 확인 뷰.
                             myInfoImg3.setImageResource(R.drawable.tomato);
@@ -847,22 +888,21 @@ public class MainActivity extends AppCompatActivity {
                             tomatoTotalEa = TomatoEa + tomatoTotalEa;//나의 정보에 누적될 최종갯수
                             tvMyInfoEa3.setText(tomatoTotalEa + "");
                         }
-                        if(potatoTotal>0)
-                        {
+                        if (potatoTotal > 0) {
                             //감자 구매내역 남기기
                             myInfoVa4.setVisibility(View.VISIBLE);//나의정보창에 구매내역 확인 뷰.
                             myInfoImg4.setImageResource(R.drawable.potato);
                             tvMyinfoStore4.setText("업체: 사랑채소");
                             tvMyInfoVa4.setText("감자");
-                            potatoTotalEa=potatoEa+potatoTotalEa;//나의 정보에 누적될 최종갯수
-                            tvMyInfoEa4.setText(potatoTotalEa+"");
+                            potatoTotalEa = potatoEa + potatoTotalEa;//나의 정보에 누적될 최종갯수
+                            tvMyInfoEa4.setText(potatoTotalEa + "");
                         }
 
 
-                        onionTotal=0;//각 야채 총금액들 초기화
-                        carrotTotal=0;
-                        tomatoTotal=0;
-                        potatoTotal=0;
+                        onionTotal = 0;//각 야채 총금액들 초기화
+                        carrotTotal = 0;
+                        tomatoTotal = 0;
+                        potatoTotal = 0;
 
                         OnionEa = 0;//구매완료 후 shop 레이아웃 갯수 초기화
                         CarrotEa = 0;
@@ -873,21 +913,13 @@ public class MainActivity extends AppCompatActivity {
                         edCnt2.setText("0");
                         edCnt3.setText("0");
                         edCnt4.setText("0");
-                    }
-
-                    else if (vageTotalMoney > fillMoeny && vageTotalMoney!=0)
-                    {
+                    } else if (vageTotalMoney > fillMoeny && vageTotalMoney != 0) {
                         tvInfo.setText("충전금액이 더 필요 합니다.");
-                    }
-                    else if(vageTotalMoney == 0 && fillMoeny == 0)
-                    {
+                    } else if (vageTotalMoney == 0 && fillMoeny == 0) {
+                        tvInfo.setText("상품을 장바구니에 담아주세요.");
+                    } else if (fillMoeny > 0 && vageTotalMoney == 0) {
                         tvInfo.setText("상품을 장바구니에 담아주세요.");
                     }
-                    else if(fillMoeny >0 && vageTotalMoney == 0)
-                    {
-                        tvInfo.setText("상품을 장바구니에 담아주세요.");
-                    }
-
                     break;
 
 
@@ -902,12 +934,11 @@ public class MainActivity extends AppCompatActivity {
                     tvUpName1.setText("");
                     tvUpHp1.setText("");
                     break;
-                    //개인정보 수정버튼====================================================
+                //개인정보 수정버튼====================================================
                 case R.id.btnFind:
 
                     String idUpdateFind = edFind.getText().toString();
-                    if(idUpdateFind.equals(""))
-                    {
+                    if (idUpdateFind.equals("")) {
                         break;
                     }
 
@@ -919,27 +950,27 @@ public class MainActivity extends AppCompatActivity {
                     String inputUpdateHp = edHp.getText().toString();
 
                     String inputUpdateId = edFind.getText().toString();
-                    if(inputUpdateId.equals(""))
-                    {
+                    if (inputUpdateId.equals("")) {
                         Toast.makeText(getApplicationContext(), "수정대상 아이디를 입력하세요.", Toast.LENGTH_LONG).show();
                         break;
                     }
-                    if(inputUpdateName.equals(""))
-                    {
+                    if (inputUpdateName.equals("")) {
                         Toast.makeText(getApplicationContext(), "수정대상 이름을 입력하세요.", Toast.LENGTH_LONG).show();
                         break;
                     }
-                    if(inputUpdateHp.equals(""))
-                    {
+                    if (inputUpdateHp.equals("")) {
                         Toast.makeText(getApplicationContext(), "수정대상 연락처를 입력하세요.", Toast.LENGTH_LONG).show();
                         break;
                     }
-                    update(inputUpdateId,inputUpdateName, inputUpdateHp);
+                    update(inputUpdateId, inputUpdateName, inputUpdateHp);
                     break;
             }
         }
+
     };
-    //메인 4개 레이아웃 인비지블 메소드
+
+
+    //메인 4개 레이아웃 인비지블 메소드================================================================
     public void layoutView()
     {
         shopLayout.setVisibility(View.INVISIBLE);
